@@ -1,8 +1,16 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { CheckCircle2, ArrowRight, Zap } from 'lucide-react'
-const packages = [
+
+interface Package {
+  name: string
+  target: string
+  price: string
+  features: string[]
+  highlight: boolean
+}
+
+const packages: Package[] = [
   {
     name: 'Starter Brand',
     target: 'For new businesses',
@@ -42,52 +50,32 @@ const packages = [
     highlight: false,
   },
 ]
+
 export function Packages() {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        duration: 0.5,
-      }}
-      className="w-full pt-20 bg-kv-bg"
+      className="page packages-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
     >
-      <section className="py-24 text-center">
-        <div className="max-w-4xl mx-auto px-6">
+      {/* ── Header ───────────────────────────────────────────── */}
+      <section className="packages-header">
+        <div className="packages-header__inner">
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-kv-black mb-6"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
+            className="packages-header__title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
           >
             Pricing Packages
           </motion.h1>
-          <div className="h-1 w-24 bg-kv-red mx-auto mb-8"></div>
+          <div className="page-hero__divider" style={{ margin: '0 auto 2rem' }} />
           <motion.p
-            className="text-xl text-kv-muted"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.2,
-            }}
+            className="packages-header__subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
           >
             Curated bundles to help you choose quickly, with the flexibility to
             customize.
@@ -95,67 +83,37 @@ export function Packages() {
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* ── Packages Grid ────────────────────────────────────── */}
+      <section className="packages-grid-section">
+        <div className="kv-container">
+          <div className="packages-grid">
             {packages.map((pkg, index) => (
               <motion.div
                 key={index}
-                initial={{
-                  opacity: 0,
-                  y: 30,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: index * 0.1,
-                }}
-                className={`relative rounded-md p-8 flex flex-col border ${pkg.highlight ? 'bg-kv-black text-white border-kv-black transform md:-translate-y-4' : 'bg-white text-kv-black border-[#DDDBD4]'}`}
+                className={`package-card${pkg.highlight ? ' package-card--highlight' : ''}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
               >
                 {pkg.highlight && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-kv-red text-white px-4 py-1 rounded-sm text-sm font-bold flex items-center gap-1">
-                    <Zap size={14} /> Most Popular
+                  <div className="package-card__badge" aria-label="Most Popular">
+                    <Zap size={14} aria-hidden="true" /> Most Popular
                   </div>
                 )}
 
-                <div className="mb-8">
-                  <h3
-                    className={`text-2xl font-bold mb-2 ${pkg.highlight ? 'text-white' : 'text-kv-black'}`}
-                  >
-                    {pkg.name}
-                  </h3>
-                  <p
-                    className={
-                      pkg.highlight ? 'text-kv-silver' : 'text-kv-muted'
-                    }
-                  >
-                    {pkg.target}
-                  </p>
+                <div className="package-card__header">
+                  <h3 className="package-card__name">{pkg.name}</h3>
+                  <p className="package-card__target">{pkg.target}</p>
                 </div>
 
-                <div className="mb-8">
-                  <span className="text-4xl font-bold text-kv-red">
-                    {pkg.price}
-                  </span>
-                </div>
+                <p className="package-card__price">{pkg.price}</p>
 
-                <ul className="space-y-4 mb-10 flex-grow">
+                <ul className="package-card__features">
                   {pkg.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle2
-                        size={20}
-                        className="shrink-0 mt-0.5 text-kv-red"
-                      />
-                      <span
-                        className={
-                          pkg.highlight ? 'text-white/90' : 'text-kv-black'
-                        }
-                      >
+                    <li key={i} className="package-card__feature">
+                      <CheckCircle2 size={20} aria-hidden="true" />
+                      <span className="package-card__feature-text">
                         {feature}
                       </span>
                     </li>
@@ -164,7 +122,7 @@ export function Packages() {
 
                 <Link
                   to="/contact"
-                  className={`w-full py-4 rounded-md font-semibold text-center transition-all ${pkg.highlight ? 'bg-kv-red text-white hover:bg-kv-red-hover' : 'bg-transparent text-kv-black border border-kv-black hover:border-kv-red hover:text-kv-red'}`}
+                  className={`package-card__cta${pkg.highlight ? ' package-card__cta--highlight' : ' package-card__cta--default'}`}
                 >
                   Choose Package
                 </Link>
@@ -174,20 +132,16 @@ export function Packages() {
         </div>
       </section>
 
-      <section className="py-24 bg-kv-charcoal border-t-2 border-kv-red text-center">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Need something unique?
-          </h2>
-          <p className="text-lg text-kv-silver mb-10">
+      {/* ── Custom Quote CTA ─────────────────────────────────── */}
+      <section className="packages-custom">
+        <div className="packages-custom__inner">
+          <h2 className="packages-custom__title">Need something unique?</h2>
+          <p className="packages-custom__subtitle">
             We understand that every business is different. Contact us for a
             custom quote tailored exactly to your specific requirements.
           </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-kv-red text-white rounded-md font-semibold hover:bg-kv-red-hover transition-all"
-          >
-            Request Custom Quote <ArrowRight size={18} />
+          <Link to="/contact" className="packages-custom__cta">
+            Request Custom Quote <ArrowRight size={18} aria-hidden="true" />
           </Link>
         </div>
       </section>

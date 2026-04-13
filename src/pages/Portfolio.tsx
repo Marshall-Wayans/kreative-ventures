@@ -1,5 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+
+interface PortfolioItem {
+  id: number
+  title: string
+  category: string
+  image: string
+}
+
 const categories = [
   'All',
   'Engraving',
@@ -9,7 +17,8 @@ const categories = [
   'Apparel',
   'Gifts',
 ]
-const portfolioItems = [
+
+const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     title: 'Corporate Awards',
@@ -29,7 +38,7 @@ const portfolioItems = [
     title: 'Custom Apparel',
     category: 'Printing',
     image:
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=2080&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=500&auto=format&fit=crop&q=60',
   },
   {
     id: 4,
@@ -74,58 +83,39 @@ const portfolioItems = [
       'https://images.unsplash.com/photo-1584447128309-b66b7a4d1b63?q=80&w=2070&auto=format&fit=crop',
   },
 ]
+
 export function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('All')
+
   const filteredItems =
     activeCategory === 'All'
       ? portfolioItems
       : portfolioItems.filter((item) => item.category === activeCategory)
+
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        duration: 0.5,
-      }}
-      className="w-full pt-20"
+      className="page portfolio-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
     >
-      {/* Header */}
-      <section className="py-24 bg-kv-bg text-center">
-        <div className="max-w-4xl mx-auto px-6">
+      {/* ── Header ───────────────────────────────────────────── */}
+      <section className="portfolio-header">
+        <div className="portfolio-header__inner">
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-kv-black mb-6"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
+            className="portfolio-header__title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
           >
             Our Work
           </motion.h1>
-          <div className="h-1 w-24 bg-kv-red mx-auto mb-8"></div>
+          <div className="page-hero__divider" style={{ margin: '0 auto 2rem' }} />
           <motion.p
-            className="text-xl text-kv-muted"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.2,
-            }}
+            className="portfolio-header__subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
           >
             The craftsmanship speaks for itself. Explore our recent projects
             across various industries.
@@ -133,61 +123,46 @@ export function Portfolio() {
         </div>
       </section>
 
-      {/* Filters & Gallery */}
-      <section className="py-16 bg-kv-bg min-h-screen">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-16">
+      {/* ── Gallery ──────────────────────────────────────────── */}
+      <section className="portfolio-gallery">
+        <div className="kv-container">
+          {/* Filter tabs */}
+          <div className="portfolio-filters" role="group" aria-label="Filter by category">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all duration-300 border ${activeCategory === category ? 'bg-kv-red border-kv-red text-white' : 'bg-white border-[#DDDBD4] text-kv-muted hover:border-kv-red hover:text-kv-red'}`}
+                className={`portfolio-filter-btn${activeCategory === category ? ' portfolio-filter-btn--active' : ''}`}
+                aria-pressed={activeCategory === category}
               >
                 {category}
               </button>
             ))}
           </div>
 
-          {/* Masonry Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+          {/* Grid */}
+          <motion.div layout className="portfolio-grid">
             <AnimatePresence>
               {filteredItems.map((item) => (
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                  }}
-                  className="group relative rounded-md overflow-hidden cursor-pointer h-80"
+                  className="portfolio-item"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="portfolio-item__img"
                   />
-                  <div className="absolute inset-0 bg-[#1A1A1A]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <span className="text-kv-red text-xs font-bold uppercase tracking-wider mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="portfolio-item__overlay">
+                    <span className="portfolio-item__category">
                       {item.category}
                     </span>
-                    <h3 className="text-white text-xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                      {item.title}
-                    </h3>
+                    <h3 className="portfolio-item__title">{item.title}</h3>
                   </div>
                 </motion.div>
               ))}

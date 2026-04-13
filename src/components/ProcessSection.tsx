@@ -1,7 +1,15 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Lightbulb, PenTool, Settings, Truck } from 'lucide-react'
-const steps = [
+import type { LucideIcon } from 'lucide-react'
+
+interface Step {
+  icon: LucideIcon
+  title: string
+  description: string
+}
+
+const steps: Step[] = [
   {
     icon: Lightbulb,
     title: 'Share Your Idea',
@@ -27,118 +35,94 @@ const steps = [
       'Your premium products are carefully packaged and delivered on time.',
   },
 ]
+
 export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null)
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start center', 'end center'],
   })
+
+  // Drive the red line from 0 → 1 as the section scrolls into view
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1])
+
   return (
-    <section
-      ref={containerRef}
-      className="py-24 bg-kv-bg relative overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-20">
+    <section ref={containerRef} className="process">
+      <div className="kv-container">
+        {/* Header */}
+        <div className="process__header">
           <motion.h2
-            className="text-4xl font-bold text-kv-black mb-4"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            className="process__title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             How We Work
           </motion.h2>
           <motion.p
-            className="text-kv-muted text-lg"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.1,
-            }}
+            className="process__subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
           >
             A seamless, transparent process designed to deliver excellence every
             time.
           </motion.p>
         </div>
 
-        <div className="relative">
-          {/* Animated Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-12 left-0 w-full h-1">
-            <svg width="100%" height="100%" className="absolute inset-0">
+        {/* Steps */}
+        <div className="process__steps">
+          {/* Animated connecting line — desktop only */}
+          <div className="process__line" aria-hidden="true">
+            <svg
+              width="100%"
+              height="4"
+              className="process__line-track"
+              preserveAspectRatio="none"
+            >
+              {/* Dashed grey track */}
               <line
                 x1="10%"
-                y1="50%"
+                y1="2"
                 x2="90%"
-                y2="50%"
+                y2="2"
                 stroke="#DDDBD4"
                 strokeWidth="2"
                 strokeDasharray="8 8"
               />
+              {/* Animated red fill */}
               <motion.line
                 x1="10%"
-                y1="50%"
+                y1="2"
                 x2="90%"
-                y2="50%"
+                y2="2"
                 stroke="#E8201A"
                 strokeWidth="2"
-                style={{
-                  pathLength,
-                }}
+                style={{ pathLength }}
               />
             </svg>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+          <div className="process__grid">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                className="relative flex flex-col items-center text-center group"
-                initial={{
-                  opacity: 0,
-                  y: 30,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.2,
-                }}
+                className="process__step"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <div className="w-24 h-24 bg-white border border-[#DDDBD4] flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform duration-300 hexagon">
-                  <step.icon size={32} className="text-kv-red" />
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-kv-red text-white flex items-center justify-center font-bold text-xs hexagon">
+                <div className="process__step-icon-wrap hexagon">
+                  <step.icon size={32} />
+                  <span className="process__step-num hexagon">
                     {index + 1}
-                  </div>
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold text-kv-black mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-kv-muted text-sm leading-relaxed">
-                  {step.description}
-                </p>
+                <h3 className="process__step-title">{step.title}</h3>
+                <p className="process__step-desc">{step.description}</p>
               </motion.div>
             ))}
           </div>

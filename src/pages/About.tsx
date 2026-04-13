@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
@@ -9,72 +8,50 @@ import {
   Zap,
   ArrowRight,
 } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { EngraveAnimation } from '../components/EngraveAnimation'
-const values = [
-  {
-    icon: Palette,
-    title: 'Creativity',
-    desc: 'Pushing boundaries in design and execution.',
-  },
-  {
-    icon: Target,
-    title: 'Precision',
-    desc: 'Exact measurements, flawless finishes.',
-  },
-  {
-    icon: Shield,
-    title: 'Reliability',
-    desc: 'Consistent quality you can count on.',
-  },
-  {
-    icon: HeadphonesIcon,
-    title: 'Support',
-    desc: 'Dedicated assistance at every step.',
-  },
-  {
-    icon: Zap,
-    title: 'Speed',
-    desc: 'Fast turnaround without compromising quality.',
-  },
+
+interface Value {
+  icon: LucideIcon
+  title: string
+  desc: string
+}
+
+const values: Value[] = [
+  { icon: Palette,        title: 'Creativity',   desc: 'Pushing boundaries in design and execution.' },
+  { icon: Target,         title: 'Precision',    desc: 'Exact measurements, flawless finishes.' },
+  { icon: Shield,         title: 'Reliability',  desc: 'Consistent quality you can count on.' },
+  { icon: HeadphonesIcon, title: 'Support',      desc: 'Dedicated assistance at every step.' },
+  { icon: Zap,            title: 'Speed',        desc: 'Fast turnaround without compromising quality.' },
 ]
+
 export function About() {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        duration: 0.5,
-      }}
-      className="w-full pt-20"
+      className="page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
     >
-      {/* Intro Banner */}
-      <section className="relative h-[400px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      {/* ── Hero Banner ──────────────────────────────────────── */}
+      <section className="page-hero">
+        <div className="page-hero__bg">
           <img
             src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=2000&auto=format&fit=crop"
-            alt="About Us"
-            className="w-full h-full object-cover"
+            alt=""
+            className="page-hero__img"
           />
-          <div className="absolute inset-0 bg-[#1A1A1A]/70 backdrop-blur-sm"></div>
+          <div
+            className="page-hero__overlay"
+            style={{ backgroundColor: 'rgba(26,26,26,0.70)' }}
+          />
         </div>
-        <div className="relative z-10 text-center px-6">
+        <div className="page-hero__content">
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
+            className="page-hero__title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
           >
             Our Story
           </motion.h1>
@@ -82,73 +59,50 @@ export function About() {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      {/* ── Mission ──────────────────────────────────────────── */}
+      <section className="about-mission">
+        <div className="about-mission__inner">
           <motion.p
-            className="text-2xl md:text-3xl text-kv-black font-medium leading-relaxed mb-12"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            className="about-mission__quote"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             "We believe that every brand deserves to be represented with{' '}
-            <span className="text-kv-red">precision</span>,{' '}
-            <span className="text-kv-red">creativity</span>, and uncompromising{' '}
-            <span className="text-kv-red">quality</span>."
+            <span className="about-mission__accent">precision</span>,{' '}
+            <span className="about-mission__accent">creativity</span>, and
+            uncompromising{' '}
+            <span className="about-mission__accent">quality</span>."
           </motion.p>
         </div>
       </section>
 
-      {/* Brand Story */}
-      <section className="py-24 bg-kv-bg">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* ── Brand Story ──────────────────────────────────────── */}
+      <section className="about-story">
+        <div className="kv-container">
+          <div className="about-story__grid">
             <motion.div
-              initial={{
-                opacity: 0,
-                x: -30,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              className="relative rounded-md overflow-hidden h-[600px]"
+              className="about-story__img-wrap"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
               <img
                 src="https://images.unsplash.com/photo-1611078449933-332410e1f25b?q=80&w=2070&auto=format&fit=crop"
-                alt="Workshop"
-                className="w-full h-full object-cover"
+                alt="Inside the Kreative Ventures workshop"
+                className="about-story__img"
               />
             </motion.div>
 
             <motion.div
-              initial={{
-                opacity: 0,
-                x: 30,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-kv-black mb-6">
+              <h2 className="about-story__title">
                 Crafting Excellence Since Day One
               </h2>
-              <div className="space-y-6 text-kv-muted text-lg leading-relaxed">
+              <div className="about-story__body">
                 <p>
                   Kreative Ventures started with a simple idea: to bridge the
                   gap between creative design and high-quality manufacturing in
@@ -173,181 +127,107 @@ export function About() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-kv-black mb-4">
-              Our Core Values
-            </h2>
-            <div className="h-0.5 w-16 bg-kv-red mx-auto mb-6"></div>
+      {/* ── Values ───────────────────────────────────────────── */}
+      <section className="about-values">
+        <div className="kv-container">
+          <div className="about-values__header">
+            <h2 className="section-title">Our Core Values</h2>
+            <div className="section-divider section-divider--center" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="about-values__grid">
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: index * 0.1,
-                }}
-                className="bg-kv-bg p-8 rounded-md text-center"
+                className="about-values__card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
               >
-                <div className="w-16 h-16 mx-auto bg-white flex items-center justify-center hexagon mb-6">
-                  <value.icon size={28} className="text-kv-red" />
+                <div className="about-values__icon-wrap hexagon">
+                  <value.icon size={28} aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-bold text-kv-black mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-kv-muted text-sm">{value.desc}</p>
+                <h3 className="about-values__title">{value.title}</h3>
+                <p className="about-values__desc">{value.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Workshop/Team */}
-      <section className="py-24 bg-kv-black border-t-2 border-kv-red text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* ── Workshop ─────────────────────────────────────────── */}
+      <section className="about-workshop">
+        <div className="kv-container">
+          <div className="about-workshop__grid">
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold mb-6">Inside the Workshop</h2>
-              <p className="text-white/80 text-lg leading-relaxed mb-8">
+              <h2 className="about-workshop__title">Inside the Workshop</h2>
+              <p className="about-workshop__body">
                 Our workspace is where magic happens. It's a blend of
                 traditional craftsmanship and modern technology. We invite you
                 to see the care and precision that goes into every piece we
                 create.
               </p>
-              <Link
-                to="/portfolio"
-                className="inline-flex items-center gap-2 text-kv-red font-semibold hover:text-white transition-colors"
-              >
-                See Our Work <ArrowRight size={20} />
+              <Link to="/portfolio" className="about-workshop__link">
+                See Our Work <ArrowRight size={20} aria-hidden="true" />
               </Link>
             </motion.div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="about-workshop__photos">
               <motion.img
-                initial={{
-                  opacity: 0,
-                  scale: 0.9,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                viewport={{
-                  once: true,
-                }}
                 src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
-                alt="Machine"
-                className="rounded-md w-full h-64 object-cover"
+                alt="Workshop machine"
+                className="about-workshop__photo"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
               />
               <motion.img
-                initial={{
-                  opacity: 0,
-                  scale: 0.9,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: 0.2,
-                }}
                 src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2070&auto=format&fit=crop"
-                alt="Detail"
-                className="rounded-md w-full h-64 object-cover mt-8"
+                alt="Engraving detail"
+                className="about-workshop__photo about-workshop__photo--offset"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Promise CTA */}
-      <section className="py-32 bg-kv-charcoal border-t-2 border-kv-red text-center">
-        <div className="max-w-3xl mx-auto px-6">
+      {/* ── Promise CTA ──────────────────────────────────────── */}
+      <section className="about-promise">
+        <div className="about-promise__inner">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            className="about-promise__title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             Our Promise to You
           </motion.h2>
           <motion.p
-            className="text-xl text-kv-silver mb-12"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.1,
-            }}
+            className="about-promise__subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
           >
             Excellence in every detail. Consistency in every order. We are
             committed to elevating your brand.
           </motion.p>
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.2,
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
           >
-            <Link
-              to="/contact"
-              className="px-8 py-4 bg-kv-red text-white rounded-md font-semibold hover:bg-kv-red-hover transition-all inline-block"
-            >
+            <Link to="/contact" className="about-promise__cta">
               Start Your Project
             </Link>
           </motion.div>

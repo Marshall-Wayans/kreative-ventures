@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,7 +17,10 @@ import { Reviews } from './pages/Reviews'
 import { FAQ } from './pages/FAQ'
 import { Contact } from './pages/Contact'
 import { Brand } from './pages/Brand'
-// Scroll to top on route change
+import './App.css'
+import './components/kreative-ventures.css'
+import './pages/kreative-ventures-pages.css'
+
 function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
@@ -25,14 +28,15 @@ function ScrollToTop() {
   }, [pathname])
   return null
 }
-export function App() {
+
+export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-brand-cream font-sans text-brand-dark selection:bg-brand-secondary selection:text-white">
+      <div className="app-root">
         <Header />
 
-        <main className="flex-grow">
+        <main className="app-main">
           <AnimatePresence mode="wait">
             <Routes>
               <Route path="/" element={<Home />} />

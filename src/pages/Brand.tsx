@@ -1,244 +1,150 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { EngraveAnimation } from '../components/EngraveAnimation'
+
+interface ColorSwatch {
+  name: string
+  hex: string
+  swatchClass: string
+  textClass: string
+}
+
+const colorSwatches: ColorSwatch[] = [
+  { name: 'KV Black',      hex: '#1A1A1A', swatchClass: 'swatch-black',    textClass: 'white' },
+  { name: 'KV Charcoal',   hex: '#2D2D2D', swatchClass: 'swatch-charcoal', textClass: 'white' },
+  { name: 'KV Red',        hex: '#E8201A', swatchClass: 'swatch-red',      textClass: 'white' },
+  { name: 'KV Silver',     hex: '#C0C0C0', swatchClass: 'swatch-silver',   textClass: 'dark' },
+  { name: 'KV White',      hex: '#FFFFFF', swatchClass: 'swatch-white',    textClass: 'dark' },
+  { name: 'KV Background', hex: '#F5F5F3', swatchClass: 'swatch-bg',       textClass: 'dark' },
+  { name: 'KV Muted',      hex: '#8A8A8A', swatchClass: 'swatch-muted',    textClass: 'white' },
+]
+
+const typeWeights = [
+  { label: 'Light',   weight: 300 },
+  { label: 'Regular', weight: 400 },
+  { label: 'Medium',  weight: 500 },
+  { label: 'Bold',    weight: 700 },
+]
+
 export function Brand() {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        duration: 0.8,
-      }}
-      className="w-full pt-20 bg-kv-bg min-h-screen"
+      className="page brand-page"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.8 }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-24">
-        {/* Logo Reveal */}
-        <div className="text-center mb-32">
+      <div className="brand-page__inner">
+
+        {/* ── Logo Reveal ──────────────────────────────────── */}
+        <div className="brand-logo-reveal">
           <motion.div
-            initial={{
-              scale: 0.8,
-              opacity: 0,
-            }}
-            animate={{
-              scale: 1,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 1,
-              ease: 'easeOut',
-            }}
-            className="mb-8 bg-kv-black p-16 rounded-md inline-block"
+            className="brand-logo-box"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
           >
-            <h1 className="text-6xl md:text-8xl font-bold text-white tracking-widest">
-              KREATIVE
-            </h1>
-            <h2 className="text-3xl md:text-4xl font-light text-kv-silver tracking-[0.3em] mt-2">
-              VENTURES
-            </h2>
+            <span className="brand-logo-box__primary">KREATIVE</span>
+            <span className="brand-logo-box__secondary">VENTURES</span>
           </motion.div>
-          <div className="mt-8">
+
+          <div style={{ marginTop: '2rem' }}>
             <EngraveAnimation color="#E8201A" width="300" delay={0.5} />
           </div>
+
           <motion.p
-            className="mt-8 text-xl text-kv-muted max-w-2xl mx-auto font-light"
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 1,
-            }}
+            className="brand-logo-reveal__tagline"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
           >
             Bold branding. Precision craft. Kenyan-made excellence.
           </motion.p>
         </div>
 
-        {/* Color Palette */}
+        {/* ── Color Palette ─────────────────────────────────── */}
         <motion.div
-          className="mb-32"
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
+          className="brand-section"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold text-kv-black mb-8 border-b border-[#DDDBD4] pb-4">
-            Brand Colors
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              {
-                name: 'KV Black',
-                hex: '#1A1A1A',
-                class: 'bg-kv-black',
-                text: 'text-white',
-              },
-              {
-                name: 'KV Charcoal',
-                hex: '#2D2D2D',
-                class: 'bg-kv-charcoal',
-                text: 'text-white',
-              },
-              {
-                name: 'KV Red',
-                hex: '#E8201A',
-                class: 'bg-kv-red',
-                text: 'text-white',
-              },
-              {
-                name: 'KV Silver',
-                hex: '#C0C0C0',
-                class: 'bg-kv-silver',
-                text: 'text-kv-black',
-              },
-              {
-                name: 'KV White',
-                hex: '#FFFFFF',
-                class: 'bg-white border border-[#DDDBD4]',
-                text: 'text-kv-black',
-              },
-              {
-                name: 'KV Background',
-                hex: '#F5F5F3',
-                class: 'bg-kv-bg border border-[#DDDBD4]',
-                text: 'text-kv-black',
-              },
-              {
-                name: 'KV Muted',
-                hex: '#8A8A8A',
-                class: 'bg-kv-muted',
-                text: 'text-white',
-              },
-            ].map((color, i) => (
-              <div key={i} className="flex flex-col">
-                <div
-                  className={`h-32 rounded-md ${color.class} mb-3 flex items-end p-4`}
-                >
+          <h3 className="brand-section__title">Brand Colors</h3>
+          <div className="brand-colors__grid">
+            {colorSwatches.map((swatch, i) => (
+              <div key={i} className="brand-color-swatch">
+                <div className={`brand-color-swatch__block ${swatch.swatchClass}`}>
                   <span
-                    className={`font-mono text-sm font-medium ${color.text}`}
+                    className="brand-color-swatch__hex"
+                    style={{ color: swatch.textClass === 'white' ? '#fff' : '#1A1A1A' }}
                   >
-                    {color.hex}
+                    {swatch.hex}
                   </span>
                 </div>
-                <span className="font-bold text-kv-black">{color.name}</span>
+                <span className="brand-color-swatch__name">{swatch.name}</span>
               </div>
             ))}
           </div>
         </motion.div>
 
-        {/* Typography */}
+        {/* ── Typography ────────────────────────────────────── */}
         <motion.div
-          className="mb-32"
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
+          className="brand-section"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold text-kv-black mb-8 border-b border-[#DDDBD4] pb-4">
-            Typography
-          </h3>
-          <div className="bg-white p-12 rounded-md border border-[#DDDBD4]">
-            <div className="flex flex-col md:flex-row gap-12 items-center">
-              <div className="text-8xl font-bold text-kv-black">Aa</div>
-              <div>
-                <h4 className="text-3xl font-bold text-kv-black mb-2">
-                  Outfit
-                </h4>
-                <p className="text-kv-muted mb-6">
-                  Primary Typeface — Bold, Geometric, Industrial
-                </p>
-                <div className="space-y-4 text-kv-black">
-                  <p className="font-light text-2xl">
-                    Light - The quick brown fox
+          <h3 className="brand-section__title">Typography</h3>
+          <div className="brand-type__card">
+            <div className="brand-type__big-a" aria-hidden="true">Aa</div>
+            <div>
+              <h4 className="brand-type__name">DM Sans</h4>
+              <p className="brand-type__meta">
+                Primary Typeface — Clean, Geometric, Modern
+              </p>
+              <div className="brand-type__samples">
+                {typeWeights.map(({ label, weight }) => (
+                  <p key={label} className="brand-type__sample" style={{ fontWeight: weight }}>
+                    {label} — The quick brown fox
                   </p>
-                  <p className="font-normal text-2xl">
-                    Regular - The quick brown fox
-                  </p>
-                  <p className="font-medium text-2xl">
-                    Medium - The quick brown fox
-                  </p>
-                  <p className="font-bold text-2xl">
-                    Bold - The quick brown fox
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Logo Usage */}
+        {/* ── Logo Placements ───────────────────────────────── */}
         <motion.div
-          className="mb-32"
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
+          className="brand-section"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-bold text-kv-black mb-8 border-b border-[#DDDBD4] pb-4">
-            Logo Placements
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-kv-black h-64 rounded-md flex items-center justify-center">
-              <span className="font-bold text-3xl tracking-widest text-white">
+          <h3 className="brand-section__title">Logo Placements</h3>
+          <div className="brand-placements__grid">
+            <div className="brand-placement brand-placement--dark">
+              <span className="brand-placement__logo brand-placement__logo--white">
                 KREATIVE VENTURES
               </span>
             </div>
-            <div className="bg-kv-bg h-64 rounded-md flex items-center justify-center border border-[#DDDBD4]">
-              <span className="font-bold text-3xl tracking-widest text-kv-black">
+            <div className="brand-placement brand-placement--light">
+              <span className="brand-placement__logo brand-placement__logo--dark">
                 KREATIVE VENTURES
               </span>
             </div>
           </div>
         </motion.div>
 
-        {/* Closing */}
+        {/* ── Closing ───────────────────────────────────────── */}
         <motion.div
-          className="text-center py-24 bg-kv-charcoal border-t-2 border-kv-red rounded-md"
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
+          className="brand-closing"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-white uppercase tracking-wider">
-            Make Your Mark.
-          </h2>
+          <h2 className="brand-closing__title">Make Your Mark.</h2>
         </motion.div>
+
       </div>
     </motion.div>
   )
