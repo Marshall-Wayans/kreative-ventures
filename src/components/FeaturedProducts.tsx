@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useState, useEffect } from "react"
+import { useAnimationFrame } from "framer-motion"
 
 interface Product {
   name: string
@@ -8,96 +8,202 @@ interface Product {
 
 const products: Product[] = [
   {
-    name: 'Custom Gifts',
-    image:
-      'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=2040&auto=format&fit=crop',
+    name: "Engraved Wooden Keepsake",
+    image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?q=80&w=800&auto=format&fit=crop",
   },
   {
-    name: 'Signage',
-    image:
-      'https://images.unsplash.com/photo-1584447128309-b66b7a4d1b63?q=80&w=2070&auto=format&fit=crop',
+    name: "Acrylic LED Signage",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
   },
   {
-    name: 'Apparel',
-    image:
-      'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=500&auto=format&fit=crop&q=60',
+    name: "Custom Trophy Awards",
+    image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop",
   },
   {
-    name: 'Trophies',
-    image:
-      'https://images.unsplash.com/photo-1561489422-45de3d015e3e?q=80&w=2070&auto=format&fit=crop',
+    name: "Branded Apparel",
+    image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800&auto=format&fit=crop",
   },
   {
-    name: 'Vehicle Branding',
-    image:
-      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop',
+    name: "Custom Printed Mugs",
+    image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=800&auto=format&fit=crop",
   },
   {
-    name: 'Stationery',
-    image:
-      'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=2000&auto=format&fit=crop',
+    name: "Die-Cut Sticker Packs",
+    image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Large Format Banners",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Engraved Photo Frames",
+    image: "https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?q=80&w=800&auto=format&fit=crop",
   },
 ]
 
-export function FeaturedProducts() {
-  const containerRef = useRef<HTMLDivElement>(null)
+/* infinite clone */
+const triple = <T,>(arr: T[]) => [...arr, ...arr, ...arr]
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  })
+/* ── ANIMATED COUNTER ──
+   Only starts counting once `shouldStart` flips to true.
+   A `started` ref prevents it from re-running on re-renders. */
+function AnimatedCounter({
+  target,
+  suffix = "",
+  duration = 3000,
+  shouldStart,
+}: {
+  target: number
+  suffix?: string
+  duration?: number
+  shouldStart: boolean
+}) {
+  const [count, setCount] = useState(0)
+  const startTime = useRef<number | null>(null)
+  const rafRef = useRef<number>(0)
+  const started = useRef(false)
 
-  // Parallax: row slides left as you scroll down
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
+  useEffect(() => {
+    // Wait until section is visible, and only run once
+    if (!shouldStart || started.current) return
+    started.current = true
+    startTime.current = null
+
+    const animate = (timestamp: number) => {
+      if (startTime.current === null) startTime.current = timestamp
+      const elapsed = timestamp - startTime.current
+      const progress = Math.min(elapsed / duration, 1)
+      // ease-out cubic — slows down near the end
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.floor(eased * target))
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(animate)
+      } else {
+        setCount(target)
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [shouldStart, target, duration])
 
   return (
-    <section ref={containerRef} className="featured-products">
-      {/* Header */}
-      <div className="featured-products__header">
-        <motion.h2
-          className="featured-products__title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          What We Make
-        </motion.h2>
-        <motion.p
-          className="featured-products__subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-        >
-          From intricate engravings to large-scale prints, explore our diverse
-          range of custom products.
-        </motion.p>
+    <span>
+      {count}
+      {suffix}
+    </span>
+  )
+}
+
+/* ── INFINITE CARD ROW ── */
+function InfiniteRow({ items }: { items: Product[] }) {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const pos = useRef(0)
+
+  const cloned = triple(items)
+  const width = items.length * (320 + 24)
+
+  useAnimationFrame((_, delta) => {
+    if (!trackRef.current) return
+    pos.current += (delta / 1000) * 50
+    if (pos.current > width) pos.current -= width
+    trackRef.current.style.transform = `translateX(${-pos.current}px)`
+  })
+
+  return (
+    <div className="fp-row">
+      <div ref={trackRef} className="fp-track">
+        {cloned.map((p, i) => (
+          <div key={i} className="fp-card">
+            <img src={p.image} alt={p.name} />
+            <div className="fp-overlay" />
+            <div className="fp-content">
+              <h3>{p.name}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* ── MAIN ── */
+export default function FeaturedProducts() {
+  const sectionRef = useRef<HTMLElement>(null)
+  // Flips to true once the section enters the viewport — never flips back
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect() // stop watching once triggered
+        }
+      },
+      { threshold: 0.2 } // trigger when 20% of section is visible
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`featured${inView ? " featured--visible" : ""}`}
+    >
+      <div className="featured__intro">
+        <div className="featured__eyebrow-wrap">
+          {/* CSS laser animations are gated by .featured--visible class */}
+          <p className="featured__eyebrow">WHAT WE DO</p>
+          <div className="featured__eyebrow-underline" />
+        </div>
+
+        <h2 className="featured__title">
+          We Create Products That Make Brands Stand Out
+        </h2>
+
+        <p className="featured__desc">
+          From precision laser engraving to large-scale print solutions, we
+          deliver high-quality custom products that elevate your brand presence.
+        </p>
+
+        <div className="featured__stats">
+          <div>
+            <h3>
+              <AnimatedCounter target={500} suffix="+" duration={3500} shouldStart={inView} />
+            </h3>
+            <p>Projects Completed</p>
+          </div>
+          <div>
+            <h3>
+              <AnimatedCounter target={100} suffix="+" duration={3000} shouldStart={inView} />
+            </h3>
+            <p>Happy Clients</p>
+          </div>
+          <div>
+            <h3>
+              <AnimatedCounter target={5} suffix="★" duration={2500} shouldStart={inView} />
+            </h3>
+            <p>Client Satisfaction</p>
+          </div>
+        </div>
+
+        <div className="featured__cta">
+          <a href="#contact" className="btn-primary">
+            Start a Project
+          </a>
+          <a href="#portfolio" className="btn-secondary">
+            View Work
+          </a>
+        </div>
       </div>
 
-      {/* Carousel row */}
-      <motion.div style={{ x }} className="featured-products__row">
-        {products.map((product, index) => (
-          <motion.div
-            key={index}
-            className="featured-products__card"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="featured-products__card-img"
-            />
-            <div className="featured-products__card-overlay" aria-hidden="true" />
-            <div className="featured-products__card-footer">
-              <h3 className="featured-products__card-name">{product.name}</h3>
-              <div className="featured-products__card-line" aria-hidden="true" />
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+      <InfiniteRow items={products} />
     </section>
   )
 }

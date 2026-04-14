@@ -2,11 +2,15 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Clock, Award, PenTool, HeadphonesIcon } from 'lucide-react'
+import laser from '../assets/laser.jpg'
+import banner from '../assets/banner.jpg'
 
 const images = [
-  'https://images.unsplash.com/photo-1611078449933-332410e1f25b?q=80&w=2070&auto=format&fit=crop',
+  laser,
+  banner,
+  'https://images.pexels.com/photos/7254413/pexels-photo-7254413.jpeg',
   'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=2071&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=2000&auto=format&fit=crop',
+  'https://www.vecteezy.com/photo/66605202-large-format-printing-machine-in-operation-close-up-industry',
 ]
 
 const trustPoints = [
