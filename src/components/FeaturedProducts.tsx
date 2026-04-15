@@ -5,7 +5,7 @@ interface Product {
   name: string
   image: string
 }
-
+ 
 const products: Product[] = [
   {
     name: "Engraved Wooden Keepsake",
@@ -41,12 +41,8 @@ const products: Product[] = [
   },
 ]
 
-/* infinite clone */
 const triple = <T,>(arr: T[]) => [...arr, ...arr, ...arr]
 
-/* ── ANIMATED COUNTER ──
-   Only starts counting once `shouldStart` flips to true.
-   A `started` ref prevents it from re-running on re-renders. */
 function AnimatedCounter({
   target,
   suffix = "",
@@ -64,7 +60,6 @@ function AnimatedCounter({
   const started = useRef(false)
 
   useEffect(() => {
-    // Wait until section is visible, and only run once
     if (!shouldStart || started.current) return
     started.current = true
     startTime.current = null
@@ -73,7 +68,6 @@ function AnimatedCounter({
       if (startTime.current === null) startTime.current = timestamp
       const elapsed = timestamp - startTime.current
       const progress = Math.min(elapsed / duration, 1)
-      // ease-out cubic — slows down near the end
       const eased = 1 - Math.pow(1 - progress, 3)
       setCount(Math.floor(eased * target))
       if (progress < 1) {
@@ -95,7 +89,6 @@ function AnimatedCounter({
   )
 }
 
-/* ── INFINITE CARD ROW ── */
 function InfiniteRow({ items }: { items: Product[] }) {
   const trackRef = useRef<HTMLDivElement>(null)
   const pos = useRef(0)
@@ -127,10 +120,8 @@ function InfiniteRow({ items }: { items: Product[] }) {
   )
 }
 
-/* ── MAIN ── */
 export default function FeaturedProducts() {
   const sectionRef = useRef<HTMLElement>(null)
-  // Flips to true once the section enters the viewport — never flips back
   const [inView, setInView] = useState(false)
 
   useEffect(() => {
@@ -141,10 +132,10 @@ export default function FeaturedProducts() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true)
-          observer.disconnect() // stop watching once triggered
+          observer.disconnect()
         }
       },
-      { threshold: 0.2 } // trigger when 20% of section is visible
+      { threshold: 0.2 }
     )
 
     observer.observe(el)
@@ -156,9 +147,9 @@ export default function FeaturedProducts() {
       ref={sectionRef}
       className={`featured${inView ? " featured--visible" : ""}`}
     >
+      {/* ── INTRO — full width, background image edge to edge ── */}
       <div className="featured__intro">
         <div className="featured__eyebrow-wrap">
-          {/* CSS laser animations are gated by .featured--visible class */}
           <p className="featured__eyebrow">WHAT WE DO</p>
           <div className="featured__eyebrow-underline" />
         </div>
@@ -171,7 +162,10 @@ export default function FeaturedProducts() {
           From precision laser engraving to large-scale print solutions, we
           deliver high-quality custom products that elevate your brand presence.
         </p>
+      </div>
 
+      {/* ── STATS BAND — full width, dark red, no image ── */}
+      <div className="featured__stats-band">
         <div className="featured__stats">
           <div>
             <h3>
@@ -192,15 +186,27 @@ export default function FeaturedProducts() {
             <p>Client Satisfaction</p>
           </div>
         </div>
+      </div>
 
-        <div className="featured__cta">
-          <a href="#contact" className="btn-primary">
-            Start a Project
-          </a>
-          <a href="#portfolio" className="btn-secondary">
-            View Work
-          </a>
-        </div>
+      {/* ── SCROLL HEADING — buttons flank "Our Work" as gateway ── */}
+      <div className="featured__scroll-heading">
+        <a href="#contact" className="btn-primary">
+          Start a Project
+        </a>
+        <span
+          style={{
+            color: "#888",
+            fontSize: "0.8rem",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Our Work
+        </span>
+        <a href="#portfolio" className="btn-secondary">
+          View Work
+        </a>
       </div>
 
       <InfiniteRow items={products} />

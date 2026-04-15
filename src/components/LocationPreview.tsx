@@ -1,57 +1,33 @@
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Clock, ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import type { LucideIcon } from 'lucide-react'
+import { MapPin, Phone, Clock, Navigation, Star, ExternalLink } from 'lucide-react'
 
-interface ContactDetail {
-  icon: LucideIcon
-  label: string
-  value: React.ReactNode
-}
-
-const contactDetails: ContactDetail[] = [
-  {
-    icon: MapPin,
-    label: 'Location',
-    value: (
-      <>
-        Nairobi, Kenya
-        <br />
-        Creative District
-      </>
-    ),
-  },
-  {
-    icon: Clock,
-    label: 'Working Hours',
-    value: (
-      <>
-        Mon – Fri: 8:00 AM – 6:00 PM
-        <br />
-        Sat: 9:00 AM – 2:00 PM
-      </>
-    ),
-  },
-  {
-    icon: Phone,
-    label: 'Contact',
-    value: (
-      <>
-        +254 700 000 000
-        <br />
-        hello@kreativeventures.co.ke
-      </>
-    ),
-  },
-]
+const LAT = -1.2464207
+const LNG = 36.6652751
 
 export function LocationPreview() {
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=Kreative+Studios+Rungiri+Kikuyu+Road+Nairobi`
+  const embedUrl = `https://maps.google.com/maps?q=-1.2464207,36.6652751&z=17&output=embed`
+
   return (
     <section className="location-preview">
+      {/* Subtle grid background */}
+      <div className="location-preview__grid-bg" aria-hidden="true" />
+
       <div className="kv-container">
+        {/* Section label */}
+        <motion.div
+          className="location-preview__eyebrow-wrap"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="location-preview__eyebrow-dot" aria-hidden="true" />
+          <p className="location-preview__eyebrow">Find Us</p>
+        </motion.div>
+
         <div className="location-preview__grid">
-          {/* Info column */}
-          <div>
+          {/* ── Info column ── */}
+          <div className="location-preview__info">
             <motion.h2
               className="location-preview__title"
               initial={{ opacity: 0, y: 20 }}
@@ -60,6 +36,7 @@ export function LocationPreview() {
             >
               Visit Our Workshop
             </motion.h2>
+
             <motion.p
               className="location-preview__intro"
               initial={{ opacity: 0, y: 20 }}
@@ -67,70 +44,142 @@ export function LocationPreview() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              Come see our machines in action and discuss your next project with
-              our creative team.
+              Come see our machines in action and discuss your next project with our creative team.
             </motion.p>
 
+            {/* Business card strip */}
+            <motion.div
+              className="location-preview__biz-card"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+            >
+              <div className="location-preview__biz-header">
+                <div className="location-preview__biz-logo" aria-hidden="true">KV</div>
+                <div>
+                  <p className="location-preview__biz-name">Kreative Studios</p>
+                  <p className="location-preview__biz-category">Design &amp; Print Agency · Nairobi, KE</p>
+                </div>
+              </div>
+              <div className="location-preview__biz-rating" aria-label="5 out of 5 stars, 2 reviews">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} className="location-preview__star" aria-hidden="true" />
+                ))}
+                <span className="location-preview__rating-score">5.0</span>
+                <span className="location-preview__rating-count">(2 reviews)</span>
+              </div>
+            </motion.div>
+
+            {/* Details */}
             <div className="location-preview__details">
-              {contactDetails.map((detail, index) => (
+              {[
+                {
+                  icon: MapPin,
+                  label: 'Address',
+                  value: 'Kikuyu Road, Makutano Foot Bridge, Rungiri',
+                  sub: 'QM38+C4 Rungiri, Nairobi',
+                  delay: 0.2,
+                },
+                {
+                  icon: Clock,
+                  label: 'Hours',
+                  value: 'Mon – Fri: 8:00 AM – 7:30 PM',
+                  sub: 'Sat: 9:00 AM – 2:00 PM',
+                  delay: 0.3,
+                  badge: true,
+                },
+                {
+                  icon: Phone,
+                  label: 'Contact',
+                  value: '0759 081808',
+                  sub: 'hello@kreativeventures.co.ke',
+                  delay: 0.4,
+                },
+              ].map(({ icon: Icon, label, value, sub, delay, badge }) => (
                 <motion.div
-                  key={index}
+                  key={label}
                   className="location-preview__detail"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -16 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
+                  transition={{ delay }}
                 >
-                  <div className="location-preview__detail-icon hexagon">
-                    <detail.icon size={24} aria-hidden="true" />
+                  <div className="location-preview__detail-icon">
+                    <Icon size={18} aria-hidden="true" />
                   </div>
-                  <div>
-                    <h4 className="location-preview__detail-label">
-                      {detail.label}
-                    </h4>
-                    <p className="location-preview__detail-value">
-                      {detail.value}
+                  <div className="location-preview__detail-text">
+                    <p className="location-preview__detail-label">{label}</p>
+                    <p className="location-preview__detail-value">{value}</p>
+                    <p className="location-preview__detail-sub">
+                      {badge && <span className="location-preview__open-badge">Open Now</span>}
+                      {sub}
                     </p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
+            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              className="location-preview__actions"
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              <Link to="/contact" className="location-preview__cta">
-                Get Directions <ArrowRight size={18} aria-hidden="true" />
-              </Link>
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="location-preview__cta location-preview__cta--primary"
+              >
+                <Navigation size={16} aria-hidden="true" />
+                Get Directions
+              </a>
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="location-preview__cta location-preview__cta--ghost"
+              >
+                <ExternalLink size={16} aria-hidden="true" />
+                Open in Maps
+              </a>
             </motion.div>
           </div>
 
-          {/* Map column */}
+          {/* ── Map column ── */}
           <motion.div
             className="location-preview__map"
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop"
-              alt="Aerial map view of Nairobi"
-              className="location-preview__map-img"
-            />
-            <div className="location-preview__map-overlay" aria-hidden="true" />
+            {/* Top accent bar */}
+            <div className="location-preview__map-corner" aria-hidden="true" />
 
-            {/* Pin */}
-            <div className="location-preview__pin" aria-hidden="true">
-              <div className="location-preview__pin-icon hexagon">
-                <MapPin size={32} />
-              </div>
-              <div className="location-preview__pin-label">
-                Kreative Ventures
-              </div>
+            <iframe
+              className="location-preview__map-iframe"
+              src={embedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Kreative Studios location on Google Maps"
+            />
+
+            {/* Map overlay pin label */}
+            <div className="location-preview__map-label" aria-hidden="true">
+              <MapPin size={14} />
+              Kreative Studios · Rungiri
             </div>
+
+            {/* Decorative frame */}
+            <div className="location-preview__map-frame" aria-hidden="true" />
           </motion.div>
         </div>
       </div>

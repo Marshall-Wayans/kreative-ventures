@@ -17,7 +17,6 @@ import { Reviews } from './pages/Reviews'
 import { FAQ } from './pages/FAQ'
 import { Contact } from './pages/Contact'
 import { Brand } from './pages/Brand'
-import './App.css'
 import './components/kreative-ventures.css'
 import './pages/kreative-ventures-pages.css'
 
