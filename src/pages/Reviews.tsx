@@ -10,42 +10,42 @@ interface Review {
 
 const reviews: Review[] = [
   {
-    name: 'Sarah Jenkins',
+    name: 'Sarah Wangui',
     business: 'TechFlow Solutions',
     quote:
       'Kreative Ventures transformed our corporate gifting. The laser-engraved journals were flawless, and the team was incredibly helpful throughout the design process.',
     rating: 5,
   },
   {
-    name: 'Michael Chen',
+    name: 'Michael Ochieng',
     business: 'Urban Cafe',
     quote:
       'We needed custom signage and branded apparel for our new location. They delivered everything on time and the quality exceeded our expectations.',
     rating: 5,
   },
   {
-    name: 'Elena Rodriguez',
+    name: 'Elena Gatheni',
     business: 'Event Pros',
     quote:
       'Their fast turnaround saved our event. The banners and promotional materials were vibrant and professional. Highly recommend their printing services.',
     rating: 5,
   },
   {
-    name: 'David Thompson',
+    name: 'David Muigai',
     business: 'Thompson Real Estate',
     quote:
       'Consistent, reliable, and premium quality. We use them for all our client closing gifts and vehicle branding. They never disappoint.',
     rating: 5,
   },
   {
-    name: 'Jessica Wong',
+    name: 'Jessica Olondu',
     business: 'Boutique Fitness',
     quote:
       "The custom hoodies and water bottles they produced for our members are incredible. The print hasn't faded after months of washing.",
     rating: 5,
   },
   {
-    name: 'Marcus Johnson',
+    name: 'Marcus Onyango',
     business: 'Johnson Logistics',
     quote:
       'Our fleet branding looks incredibly sharp. The vinyl cutting is precise and has withstood harsh weather conditions perfectly.',

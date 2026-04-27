@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { EngraveAnimation } from '../components/EngraveAnimation'
+import logo from '../assets/logo.png'
 
 interface ColorSwatch {
   name: string
@@ -36,7 +38,7 @@ export function Brand() {
     >
       <div className="brand-page__inner">
 
-        {/* ── Logo Reveal ──────────────────────────────────── */}
+        {/* ── Logo Reveal ─- */}
         <div className="brand-logo-reveal">
           <motion.div
             className="brand-logo-box"
@@ -44,10 +46,28 @@ export function Brand() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
-            <span className="brand-logo-box__primary">KREATIVE</span>
-            <span className="brand-logo-box__secondary">VENTURES</span>
+            <Link to="/" className="header__brand">
+              <img
+                src={logo}
+                alt="Kreative Ventures Logo"
+                className="header__logo"
+                style={{
+                  height: '120px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  padding: '12px 20px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.92)',
+                  borderRadius: '10px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
+                  display: 'block',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease, opacity 0.2s ease',
+                }}
+              />
+            </Link>
           </motion.div>
 
+          {/* EngraveAnimation underline — untouched */}
           <div style={{ marginTop: '2rem' }}>
             <EngraveAnimation color="#E8201A" width="300" delay={0.5} />
           </div>

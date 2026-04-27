@@ -6,13 +6,14 @@
     "module": "esnext",
     "types": ["node"],
     "skipLibCheck": true,
+    "composite": true,        // ✅ Add this
 
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    // "noEmit": true  ❌ Remove or comment this out
 
     /* Linting */
     "noUnusedLocals": true,

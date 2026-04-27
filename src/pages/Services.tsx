@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Layers, Scissors, Printer, CheckCircle2, ArrowRight } from 'lucide-react'
+import { Layers, Scissors, Printer, CheckCircle2, ArrowRight, Palette } from 'lucide-react'
+import laserEngravingImg from '../assets/laser_engraved.svg'
+import designProcessImg from '../assets/design_process.svg'
+import designShowcaseImg from '../assets/design_logo.svg'
 
 interface ServiceItem {
   label: string
@@ -28,15 +31,15 @@ const cuttingItems: ServiceItem[] = [
   { label: 'Safety Signs' },
 ]
 
-const printingItems: ServiceItem[] = [
+const designItems: ServiceItem[] = [
   { label: 'Logo Design' },
-  { label: 'Roll-up Banners' },
-  { label: 'Custom Jerseys' },
-  { label: 'Hoodies & T-Shirts' },
-  { label: 'Flyers & Posters' },
-  { label: 'Business Cards' },
+  { label: 'Brand Identity' },
+  { label: 'Brand Guidelines' },
+  { label: 'Typography Systems' },
+  { label: 'Social Media Assets' },
+  { label: 'Packaging Design' },
   { label: 'Corporate Profiles' },
-  { label: 'Packaging' },
+  { label: 'Pitch Deck Design' },
 ]
 
 function ItemList({ items }: { items: ServiceItem[] }) {
@@ -61,7 +64,7 @@ export function Services() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* ── Intro ────────────────────────────────────────────── */}
+      {/* ── Intro ── */}
       <section className="services-intro">
         <div className="services-intro__inner">
           <motion.h1
@@ -109,23 +112,23 @@ export function Services() {
               <h4 className="service-section__items-title">What we make:</h4>
               <ItemList items={engravingItems} />
               <Link to="/contact" className="service-section__link">
-                Request a Quote <ArrowRight size={20} aria-hidden="true" />
+                Start a Project <ArrowRight size={20} aria-hidden="true" />
               </Link>
             </motion.div>
 
             {/* Photos */}
             <div className="service-section__photos">
               <motion.img
-                src="https://images.unsplash.com/photo-1561489422-45de3d015e3e?q=80&w=2070&auto=format&fit=crop"
-                alt="Laser engraved trophy"
+                src="https://images.pexels.com/photos/7254428/pexels-photo-7254428.jpeg?auto=compress&cs=tinysrgb&w=2070&fit=crop"
+                alt="Close-up of CNC laser engraving machine on wood"
                 className="service-section__photo"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
               />
               <motion.img
-                src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1974&auto=format&fit=crop"
-                alt="Engraved leather journal"
+                src={laserEngravingImg}
+                alt="Laser engraving precision metal work close-up"
                 className="service-section__photo service-section__photo--offset"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -137,23 +140,22 @@ export function Services() {
         </div>
       </section>
 
-      {/* ── 2. Plotter Cutting ───────────────────────────────── */}
+      {/* ── 2. Large Format Printing ── */}
       <section className="service-section service-section--alt">
         <div className="kv-container">
           <div className="service-section__grid">
             {/* Photos — left on desktop, top on mobile */}
             <div className="service-section__photos service-section__photos--order-first">
               <motion.img
-                src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2094&auto=format&fit=crop"
-                alt="Plotter cutting vinyl"
+                src="https://www.gflesch.com/hubfs/2020_website/images/large_format_printer.jpg"
                 className="service-section__photo service-section__photo--offset"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
               />
               <motion.img
-                src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop"
-                alt="Vehicle branding result"
+                src="https://d2zn16t8uygl6t.cloudfront.net/myprintea/images/products_gallery_images/econo-roll-up-01_03383713202506.jpg"
+                alt="Finished large format printed banners on display"
                 className="service-section__photo"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -169,26 +171,26 @@ export function Services() {
               viewport={{ once: true }}
             >
               <div className="service-section__icon service-section__icon--bg-white hexagon">
-                <Scissors size={32} aria-hidden="true" />
+                <Printer size={32} aria-hidden="true" />
               </div>
-              <h2 className="service-section__title">Plotter Cutting</h2>
+              <h2 className="service-section__title">Large Format Printing</h2>
               <div className="section-divider" />
               <p className="service-section__body">
-                Clean, sharp, and highly durable vinyl cutting services. Ideal
-                for strong visibility, branding, and decoration across various
-                surfaces and vehicles.
+                Bold, vibrant, and high-resolution printing at scale. Perfect
+                for businesses that need maximum visual impact — from outdoor
+                banners and signage to exhibition displays and vehicle wraps.
               </p>
               <h4 className="service-section__items-title">What we make:</h4>
               <ItemList items={cuttingItems} />
               <Link to="/contact" className="service-section__link">
-                Request a Quote <ArrowRight size={20} aria-hidden="true" />
+                Start a Project <ArrowRight size={20} aria-hidden="true" />
               </Link>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── 3. Design & Printing ─────────────────────────────── */}
+      {/* ── 3. Design ── */}
       <section className="service-section service-section--white">
         <div className="kv-container">
           <div className="service-section__grid">
@@ -199,35 +201,35 @@ export function Services() {
               viewport={{ once: true }}
             >
               <div className="service-section__icon service-section__icon--bg-light hexagon">
-                <Printer size={32} aria-hidden="true" />
+                <Palette size={32} aria-hidden="true" />
               </div>
-              <h2 className="service-section__title">Design & Printing</h2>
+              <h2 className="service-section__title">Design</h2>
               <div className="section-divider" />
               <p className="service-section__body">
-                The creative and corporate side of our business. From logo
-                origination to large format printing, we support businesses with
-                cohesive identity and promotional materials.
+                Great brands start with great design. We craft cohesive visual
+                identities from the first sketch to the final pixel that make
+                businesses recognisable, trustworthy, and impossible to ignore.
               </p>
-              <h4 className="service-section__items-title">What we make:</h4>
-              <ItemList items={printingItems} />
+              <h4 className="service-section__items-title">What we create:</h4>
+              <ItemList items={designItems} />
               <Link to="/contact" className="service-section__link">
-                Request a Quote <ArrowRight size={20} aria-hidden="true" />
+                Start a Project <ArrowRight size={20} aria-hidden="true" />
               </Link>
             </motion.div>
 
             {/* Photos */}
             <div className="service-section__photos">
               <motion.img
-                src="https://images.unsplash.com/photo-1562664377-709f2c337eb2?q=80&w=2070&auto=format&fit=crop"
-                alt="Large format banner printing"
+                src={designProcessImg}
+                alt="Design process — logo being sketched on paper with a pen"
                 className="service-section__photo"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
               />
               <motion.img
-                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=2080&auto=format&fit=crop"
-                alt="Custom printed apparel"
+                src={designShowcaseImg}
+                alt="Creative Power House brand identity showcase"
                 className="service-section__photo service-section__photo--offset"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}

@@ -190,7 +190,7 @@ export default function FeaturedProducts() {
 
       {/* ── SCROLL HEADING — buttons flank "Our Work" as gateway ── */}
       <div className="featured__scroll-heading">
-        <a href="#contact" className="btn-primary">
+        <a href="/contact" className="btn-primary">
           Start a Project
         </a>
         <span
@@ -204,7 +204,7 @@ export default function FeaturedProducts() {
         >
           Our Work
         </span>
-        <a href="#portfolio" className="btn-secondary">
+        <a href="/portfolio" className="btn-secondary">
           View Work
         </a>
       </div>

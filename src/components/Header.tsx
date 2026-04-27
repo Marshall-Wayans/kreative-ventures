@@ -78,7 +78,7 @@ export function Header() {
             </Link>
           ))}
           <Link to="/contact" className="header__cta">
-            Get a Quote
+            CONTACT
           </Link>
         </nav>
 

@@ -22,33 +22,45 @@ import './pages/kreative-ventures-pages.css'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
+
   return null
+}
+
+// ✅ FIX: Proper animation handling (no lag)
+function AnimatedRoutes() {
+  const location = useLocation()
+
+  return (
+    <AnimatePresence>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/packages" element={<Packages />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/brand" element={<Brand />} />
+      </Routes>
+    </AnimatePresence>
+  )
 }
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
+
       <div className="app-root">
         <Header />
 
         <main className="app-main">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/packages" element={<Packages />} />
-              <Route path="/reviews" element={<Reviews />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/brand" element={<Brand />} />
-            </Routes>
-          </AnimatePresence>
+          <AnimatedRoutes />
         </main>
 
         <Footer />

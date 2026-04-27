@@ -161,7 +161,7 @@ button {
 }
 
 .header__logo {
-  height: 45px;
+  height: 60px;
   width: auto;
   object-fit: contain;
 
@@ -2345,13 +2345,10 @@ button {
 
 /* Brand column */
 .footer__brand-logo {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: 0.15em;
-  color: var(--kv-white);
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0; /* removes ghost spacing below img */
 }
 
 .footer__brand-tagline {
@@ -2455,7 +2452,11 @@ button {
   align-items: center;
   gap: 1rem;
   font-size: 0.75rem;
-  color: var(--kv-muted);
+  color: rgb(241, 223, 223);
+}
+
+.footer__bottom p {
+  color: rgb(241, 223, 223);
 }
 
 @media (min-width: 768px) {

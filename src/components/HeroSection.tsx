@@ -12,11 +12,10 @@ import {
 } from 'lucide-react'
 
 import laser from '../assets/laser.jpg'
-import banner from '../assets/banner.jpg'
 
 const images = [
   laser,
-  banner,
+  'https://www.gflesch.com/hubfs/2020_website/images/large_format_printer.jpg',
   'https://images.pexels.com/photos/7254413/pexels-photo-7254413.jpeg',
 ]
 

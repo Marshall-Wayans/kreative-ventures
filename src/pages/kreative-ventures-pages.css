@@ -252,6 +252,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   margin-bottom: 1.5rem;
+  color: antiquewhite;
 }
 
 .about-workshop__body {
@@ -551,6 +552,10 @@
 /* ============================================================
    CONTACT PAGE
    ============================================================ */
+/* ════════════════════════════════════════
+   CONTACT PAGE
+   ════════════════════════════════════════ */
+
 .contact-page {
   background-color: var(--kv-bg);
   min-height: 100vh;
@@ -560,29 +565,31 @@
   padding-block: var(--section-py);
 }
 
-.contact-body__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
-}
-
-@media (min-width: 1024px) {
-  .contact-body__grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* Info cards */
+/* ── Info Cards ─────────────────────────────── */
 .contact-info-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .contact-info-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .contact-info-card {
   background-color: var(--kv-white);
-  padding: 1.5rem;
+  padding: 1.75rem 1.5rem;
   border-radius: var(--radius);
   border: 1px solid var(--kv-border);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.contact-info-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
 }
 
 .contact-info-card__icon {
@@ -602,77 +609,293 @@
 .contact-info-card__label {
   font-weight: 700;
   color: var(--kv-black);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
 }
 
 .contact-info-card__value {
   color: var(--kv-muted);
   line-height: 1.6;
+  font-size: 0.9rem;
 }
 
-/* Map */
-.contact-map {
-  position: relative;
-  height: 18.75rem;
+/* ── Workshop Section ───────────────────────── */
+.contact-workshop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+  background-color: var(--kv-white);
   border-radius: var(--radius);
-  overflow: hidden;
   border: 1px solid var(--kv-border);
+  overflow: hidden;
 }
 
-.contact-map__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+@media (min-width: 1024px) {
+  .contact-workshop {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
 }
 
-.contact-map__overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0,0,0,0.2);
-}
-
-.contact-map__pin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.contact-workshop__left {
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.contact-map__pin-icon {
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--kv-white);
+.contact-workshop__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--kv-red);
+  margin-bottom: 0.75rem;
+}
+
+.contact-workshop__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--kv-red);
+  display: inline-block;
+}
+
+.contact-workshop__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--kv-black);
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.contact-workshop__desc {
+  color: var(--kv-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 42ch;
+}
+
+/* Business card */
+.contact-biz-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--kv-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--kv-border);
+  margin-bottom: 1.75rem;
+}
+
+.contact-biz-card__logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  background-color: var(--kv-red);
+  color: var(--kv-white);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
 }
 
-.contact-map__pin-icon svg {
+.contact-biz-card__name {
+  font-weight: 700;
+  color: var(--kv-black);
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.contact-biz-card__category {
+  font-size: 0.8rem;
+  color: var(--kv-muted);
+  margin-bottom: 0.3rem;
+}
+
+.contact-biz-card__stars {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.contact-biz-card__rating {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--kv-black);
+  margin-left: 0.25rem;
+}
+
+/* Detail rows */
+.contact-detail-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2rem;
+  border: 1px solid var(--kv-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.contact-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--kv-border);
+}
+
+.contact-detail-row:last-child {
+  border-bottom: none;
+}
+
+.contact-detail-row__icon {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--kv-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.contact-detail-row__icon svg {
   color: var(--kv-red);
 }
 
-/* Contact form */
+.contact-detail-row__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--kv-muted);
+  margin-bottom: 0.2rem;
+}
+
+.contact-detail-row__val {
+  font-weight: 600;
+  color: var(--kv-black);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contact-detail-row__sub {
+  color: var(--kv-muted);
+  font-size: 0.82rem;
+}
+
+.contact-detail-row__badge {
+  display: inline-block;
+  margin-top: 0.3rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background-color: rgba(232, 32, 26, 0.1);
+  color: var(--kv-red);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+/* Workshop CTA buttons */
+.contact-workshop__btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contact-workshop__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.contact-workshop__btn--primary {
+  background-color: var(--kv-red);
+  color: var(--kv-white);
+  border: 2px solid var(--kv-red);
+}
+
+.contact-workshop__btn--primary:hover {
+  background-color: var(--kv-red-hover);
+  border-color: var(--kv-red-hover);
+}
+
+.contact-workshop__btn--outline {
+  background-color: transparent;
+  color: var(--kv-black);
+  border: 2px solid var(--kv-border);
+}
+
+.contact-workshop__btn--outline:hover {
+  border-color: var(--kv-black);
+}
+
+/* Map embed */
+.contact-workshop__map {
+  position: relative;
+  min-height: 26rem;
+  overflow: hidden;
+}
+
+.contact-workshop__map iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  border: none;
+}
+
+@media (min-width: 1024px) {
+  .contact-workshop__map {
+    min-height: unset;
+  }
+}
+
+/* ── Contact Form ───────────────────────────── */
 .contact-form-card {
   background-color: var(--kv-white);
-  padding: 2.5rem;
   border-radius: var(--radius);
   border: 1px solid var(--kv-border);
+  overflow: hidden;
+}
+
+.contact-form-card__header {
+  background-color: var(--kv-black);
+  padding: 2rem 2.5rem;
 }
 
 .contact-form-card__title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
-  color: var(--kv-black);
-  margin-bottom: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--kv-white);
+  margin-bottom: 0.4rem;
+}
+
+.contact-form-card__sub {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding: 2.5rem;
 }
 
 .contact-form__row {
@@ -692,8 +915,10 @@
 }
 
 .contact-form__label {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--kv-black);
 }
 
@@ -701,27 +926,44 @@
 .contact-form__select,
 .contact-form__textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   border-radius: var(--radius);
   background-color: var(--kv-bg);
-  border: 1px solid var(--kv-border);
+  border: 1.5px solid var(--kv-border);
   color: var(--kv-black);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   outline: none;
-  transition: border-color var(--ease-default), box-shadow var(--ease-default);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .contact-form__input:focus,
 .contact-form__select:focus,
 .contact-form__textarea:focus {
   border-color: var(--kv-red);
-  box-shadow: 0 0 0 2px rgba(232, 32, 26, 0.15);
+  box-shadow: 0 0 0 3px rgba(232, 32, 26, 0.12);
+  background-color: var(--kv-white);
+}
+
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+  color: var(--kv-muted);
+  opacity: 0.7;
+}
+
+.contact-form__select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
 }
 
 .contact-form__textarea {
-  resize: none;
-  rows: 4;
+  resize: vertical;
+  min-height: 7rem;
 }
 
 .contact-form__submit {
@@ -730,22 +972,34 @@
   background-color: var(--kv-red);
   color: var(--kv-white);
   border-radius: var(--radius);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  transition: background-color var(--ease-default);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   cursor: pointer;
   border: none;
   font-family: var(--font-body);
+  letter-spacing: 0.03em;
 }
 
 .contact-form__submit:hover {
   background-color: var(--kv-red-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(232, 32, 26, 0.35);
 }
 
+.contact-form__submit:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+        @keyframes kvPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50%       { opacity: 0.35; transform: scale(0.8); }
+        }
 
 /* ============================================================
    FAQ PAGE
@@ -1045,7 +1299,7 @@
 
 
 /* ============================================================
-   PORTFOLIO PAGE
+   PORTFOLIO PAGE — existing classes (unchanged)
    ============================================================ */
 .portfolio-page {
   /* no special bg — inherits from sections */
@@ -1134,67 +1388,210 @@
   .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Item */
+/* Item card — base unchanged, hover-overlay behaviour replaced below */
 .portfolio-item {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   cursor: pointer;
-  height: 20rem;
+  /* height removed — label now adds natural height below the image */
+  border: 1px solid var(--kv-border);
+  background-color: var(--kv-white);
+  transition: transform var(--ease-default), box-shadow var(--ease-default);
+}
+
+.portfolio-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
 }
 
 .portfolio-item__img {
   width: 100%;
-  height: 100%;
+  height: 16rem;          /* slightly shorter to leave room for label */
   object-fit: cover;
+  display: block;
   transition: transform var(--ease-slow);
 }
 
 .portfolio-item:hover .portfolio-item__img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
+/* ── OLD overlay kept for backwards compat but hidden ─────── */
 .portfolio-item__overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(26,26,26,0.8);
-  opacity: 0;
-  transition: opacity var(--ease-default);
+  display: none;
+}
+
+/* ── NEW: always-visible label below image ─────────────────── */
+.portfolio-item__label {
+  padding: 0.875rem 1rem 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.5rem;
-}
-
-.portfolio-item:hover .portfolio-item__overlay {
-  opacity: 1;
+  gap: 0.25rem;
 }
 
 .portfolio-item__category {
   color: var(--kv-red);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
-  transform: translateY(1rem);
-  transition: transform var(--ease-default);
-}
-
-.portfolio-item:hover .portfolio-item__category {
-  transform: translateY(0);
 }
 
 .portfolio-item__title {
-  color: var(--kv-white);
-  font-size: 1.25rem;
+  color: var(--kv-black);
+  font-size: 1rem;
   font-weight: 700;
-  transform: translateY(1rem);
-  transition: transform var(--ease-default) 75ms;
+  margin: 0;
 }
 
-.portfolio-item:hover .portfolio-item__title {
-  transform: translateY(0);
+.portfolio-item__cta {
+  font-size: 0.75rem;
+  color: var(--kv-muted);
+  margin-top: 0.25rem;
+  transition: color var(--ease-default);
+}
+
+.portfolio-item:hover .portfolio-item__cta {
+  color: var(--kv-red);
+}
+
+/* ============================================================
+   PORTFOLIO PROCESS MODAL
+   New classes only — no collision with global styles
+   ============================================================ */
+.portfolio-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(26, 26, 26, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(3px);
+}
+
+.portfolio-modal {
+  position: relative;
+  background-color: var(--kv-white);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+}
+
+.portfolio-modal__close {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius);
+  border: 1px solid var(--kv-border);
+  background-color: var(--kv-white);
+  color: var(--kv-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--ease-default);
+}
+
+.portfolio-modal__close:hover {
+  border-color: var(--kv-red);
+  color: var(--kv-red);
+}
+
+.portfolio-modal__img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.portfolio-modal__body {
+  padding: 1.5rem;
+}
+
+.portfolio-modal__cat {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--kv-red);
+  margin-bottom: 0.375rem;
+}
+
+.portfolio-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--kv-black);
+  margin: 0 0 1.25rem;
+}
+
+.portfolio-modal__steps-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kv-muted);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--kv-border);
+}
+
+.portfolio-modal__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.portfolio-modal__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+
+.portfolio-modal__step-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--kv-red);
+  color: var(--kv-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.portfolio-modal__step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.portfolio-modal__step-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--kv-black);
+}
+
+.portfolio-modal__step-desc {
+  font-size: 0.83rem;
+  color: var(--kv-muted);
+  line-height: 1.55;
 }
 
 
@@ -1490,6 +1887,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 1.875rem);
   margin-bottom: 1.5rem;
+  color: #e2d1d1;
 }
 
 .services-help__subtitle {
@@ -1516,7 +1914,7 @@
 }
 
 .services-help__btn-primary:hover {
-  background-color: var(--kv-red-hover);
+  background-color: #c3baba;
 }
 
 .services-help__btn-secondary {

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { MapPin, Phone, Mail } from 'lucide-react'
+import logo from '../assets/logo.png'
+
 
 const quickLinks = [
   { name: 'Home',      path: '/' },
@@ -27,9 +29,13 @@ export function Footer() {
         <div className="footer__grid">
           {/* Brand */}
           <div>
-            <Link to="/" className="footer__brand-logo">
-              KREATIVE VENTURES
-            </Link>
+
+
+        <Link to="/" className="header__brand">
+          <img src={logo} alt="Kreative Ventures Logo" className="header__logo" />
+        </Link>
+
+
             <p className="footer__brand-tagline">
               Bold branding. Precision craft. Kenyan-made excellence.
             </p>
@@ -145,11 +151,11 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+254700000000"
+                  href="tel:+254 759 081 808"
                   className="footer__contact-item"
                 >
                   <Phone size={18} aria-hidden="true" />
-                  <span>+254 700 000 000</span>
+                  <span>+254 759 081 808</span>
                 </a>
               </li>
               <li>
