@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Layers, Scissors, Printer, CheckCircle2, ArrowRight, Palette } from 'lucide-react'
+import { Layers, Scissors, Printer, CheckCircle2, ArrowRight, Palette, Globe } from 'lucide-react'
 import laserEngravingImg from '../assets/laser_engraved.svg'
 import designProcessImg from '../assets/design_process.svg'
 import designShowcaseImg from '../assets/design_logo.svg'
+import website from '../assets/website.png'
+
 
 interface ServiceItem {
   label: string
@@ -40,6 +42,17 @@ const designItems: ServiceItem[] = [
   { label: 'Packaging Design' },
   { label: 'Corporate Profiles' },
   { label: 'Pitch Deck Design' },
+]
+
+const webDevItems: ServiceItem[] = [
+  { label: 'Business Websites' },
+  { label: 'E-commerce Stores' },
+  { label: 'Landing Pages' },
+  { label: 'Portfolio Sites' },
+  { label: 'Web Applications' },
+  { label: 'CMS Integration' },
+  { label: 'SEO Optimisation' },
+  { label: 'Website Redesigns' },
 ]
 
 function ItemList({ items }: { items: ServiceItem[] }) {
@@ -237,6 +250,58 @@ export function Services() {
                 transition={{ delay: 0.2 }}
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. Web Development ───────────────────────────────── */}
+      <section className="service-section service-section--alt">
+        <div className="kv-container">
+          <div className="service-section__grid">
+            {/* Photos — left on desktop */}
+            <div className="service-section__photos service-section__photos--order-first">
+              <motion.img
+                src="https://images.squarespace-cdn.com/content/v1/5d72bfd58cd4bf332c64cacd/1613411995205-QG05WDGB1NF2AT3OCGTH/image-asset.jpeg?format=1500w"
+                alt="Web developer working on a modern website UI"
+                className="service-section__photo service-section__photo--offset"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+              />
+              <motion.img
+                src= {website}
+                alt="Clean website analytics dashboard on a laptop screen"
+                className="service-section__photo"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              />
+            </div>
+
+            {/* Text */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="service-section__icon service-section__icon--bg-white hexagon">
+                <Globe size={32} aria-hidden="true" />
+              </div>
+              <h2 className="service-section__title">Web Development</h2>
+              <div className="section-divider" />
+              <p className="service-section__body">
+                Your website is your most powerful brand asset. We design and
+                build fast, responsive, and visually compelling websites that
+                turn visitors into customers — crafted with the same precision
+                we bring to every physical product we make.
+              </p>
+              <h4 className="service-section__items-title">What we build:</h4>
+              <ItemList items={webDevItems} />
+              <Link to="/contact" className="service-section__link">
+                Start a Project <ArrowRight size={20} aria-hidden="true" />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>

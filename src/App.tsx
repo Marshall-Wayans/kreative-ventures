@@ -12,7 +12,7 @@ import { Home } from './pages/Home'
 import { About } from './pages/About'
 import { Services } from './pages/Services'
 import { Portfolio } from './pages/Portfolio'
-import { Packages } from './pages/Packages'
+// import { Packages } from './pages/Packages'
 import { Reviews } from './pages/Reviews'
 import { FAQ } from './pages/FAQ'
 import { Contact } from './pages/Contact'
@@ -41,7 +41,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/packages" element={<Packages />} />
+        {/* <Route path="/packages" element={<Packages />} /> */}
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />

@@ -1,5 +1,17 @@
 import { useRef, useState, useEffect } from "react"
 import { useAnimationFrame } from "framer-motion"
+import plotter from '../assets/img-005.jpg'
+import engrave from '../assets/img-012.jpg'
+import design from '../assets/img-022.jpg'
+import printing from '../assets/img-023.jpg'
+import apparel from '../assets/img-023.jpg'
+import stationery from '../assets/img-005.jpg'
+import mugs from '../assets/cup engraving 2.jpg'
+import cards from '../assets/img-021.jpg'
+import banners from '../assets/img-017.jpg'
+import branding from '../assets/img-024.jpg'
+
+
 
 interface Product {
   name: string
@@ -8,36 +20,45 @@ interface Product {
  
 const products: Product[] = [
   {
-    name: "Engraved Wooden Keepsake",
-    image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?q=80&w=800&auto=format&fit=crop",
+    name: "Plotter Cutting",
+    image: plotter,
   },
   {
-    name: "Acrylic LED Signage",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
+    name: "Laser Engraving",
+    image: engrave,
   },
   {
-    name: "Custom Trophy Awards",
-    image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?q=80&w=800&auto=format&fit=crop",
+    name: "Designing",
+    image: design,
   },
-  {
-    name: "Branded Apparel",
-    image: "https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800&auto=format&fit=crop",
+
+ {
+    name: "Printing",
+    image: printing,
+  },
+    {
+    name: "Branded Corporate Stationery",
+    image: stationery,
   },
   {
     name: "Custom Printed Mugs",
-    image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=800&auto=format&fit=crop",
+    image: mugs,
   },
   {
-    name: "Die-Cut Sticker Packs",
-    image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=800&auto=format&fit=crop",
+    name: "Business Cards",
+    image: cards,
   },
   {
     name: "Large Format Banners",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+    image: banners,
   },
-  {
-    name: "Engraved Photo Frames",
-    image: "https://images.unsplash.com/photo-1581922819941-6ab31ab79afc?q=80&w=800&auto=format&fit=crop",
+    {
+    name: "Branded Apparel",
+    image: apparel,
+  },
+    {
+    name: "Product Branding",
+    image: branding,
   },
 ]
 

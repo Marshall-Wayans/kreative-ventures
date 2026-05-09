@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import apparel from '../assets/img-023.jpg'
+import mugs from '../assets/cup engraving 2.jpg'
+import cards from '../assets/img-021.jpg'
+import banners from '../assets/img-017.jpg'
+import branding from '../assets/img-024.jpg'
+
 
 interface PortfolioItem {
   title: string
@@ -12,36 +18,31 @@ interface PortfolioItem {
 
 const portfolioItems: PortfolioItem[] = [
   {
-    title: 'Corporate Awards',
-    category: 'Engraving',
-    image:
-      'https://images.unsplash.com/photo-1561489422-45de3d015e3e?q=80&w=2070&auto=format&fit=crop',
+    title: 'Apparel Branding',
+    category: 'Branding',
+    image: apparel,
     wide: true,
     tall: true,
   },
   {
-    title: 'Fleet Branding',
-    category: 'Signage',
-    image:
-      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop',
+    title: 'Cup Engraving',
+    category: 'Engraving',
+    image: mugs,
+  },
+  {
+    title: 'Bussiness Cards',
+    category: 'Printing',
+    image: cards,
+  },
+  {
+    title: 'Large Format Banners',
+    category: 'Printing',
+    image: banners,
   },
   {
     title: 'Custom Apparel',
-    category: 'Printing',
-    image:
-      'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=500&auto=format&fit=crop&q=60',
-  },
-  {
-    title: 'Leather Journals',
-    category: 'Engraving',
-    image:
-      'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1974&auto=format&fit=crop',
-  },
-  {
-    title: 'Event Banners',
-    category: 'Printing',
-    image:
-      'https://images.unsplash.com/photo-1562664377-709f2c337eb2?q=80&w=2070&auto=format&fit=crop',
+    category: 'Branding',
+    image: branding,
   },
 ]
 

@@ -2,6 +2,10 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Layers, Scissors, Printer } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import engrave from '../assets/img-020.jpg'
+import design from '../assets/img-023.jpg'
+import plotter from '../assets/img-005.jpg'
+
 
 interface Service {
   id: string
@@ -12,6 +16,7 @@ interface Service {
   items: string[]
 }
 
+
 const services: Service[] = [
   {
     id: 'engraving',
@@ -19,8 +24,7 @@ const services: Service[] = [
     description:
       'Precision engraving on wood, metal, acrylic, and leather for premium personalized items.',
     icon: Layers,
-    image:
-      'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2070&auto=format&fit=crop',
+    image: engrave,
     items: ['Trophies', 'Key Holders', 'Corporate Gifts'],
   },
   {
@@ -29,8 +33,7 @@ const services: Service[] = [
     description:
       'Clean, sharp vinyl cutting for vehicle branding, window decals, and custom apparel.',
     icon: Scissors,
-    image:
-      'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2094&auto=format&fit=crop',
+    image: plotter,
     items: ['Vehicle Branding', 'Vinyl Stickers', 'Heat Transfer'],
   },
   {
@@ -39,8 +42,7 @@ const services: Service[] = [
     description:
       'High-quality digital and large format printing for all your marketing materials.',
     icon: Printer,
-    image:
-      'https://images.unsplash.com/photo-1562664377-709f2c337eb2?q=80&w=2070&auto=format&fit=crop',
+    image: design,
     items: ['Banners', 'Flyers', 'Apparel'],
   },
 ]

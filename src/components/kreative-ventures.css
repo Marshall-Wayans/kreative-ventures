@@ -1,16 +1,10 @@
 /* ============================================================
    KREATIVE VENTURES — Global Stylesheet
-   Covers all components: Header, Hero, Services, Portfolio,
-   Process, FeaturedProducts, WhyChooseUs, Testimonials,
-   LocationPreview, Footer, EngraveAnimation
    ============================================================ */
 
-/* ── Google Fonts ─────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&display=swap');
 
-/* ── Design Tokens ────────────────────────────────────────── */
 :root {
-  /* Brand Colors */
   --kv-red:        #E8201A;
   --kv-red-hover:  #C41813;
   --kv-black:      #0D0D0D;
@@ -21,17 +15,16 @@
   --kv-muted:      #6B6660;
   --kv-border:     #DDDBD4;
 
-  /* Typography */
   --font-display: 'Bebas Neue', sans-serif;
   --font-body:    'DM Sans', sans-serif;
 
   /* Spacing */
-  --section-py:   6rem;          /* 96px */
-  --container-px: 1.5rem;        /* 24px */
-  --max-width:    80rem;         /* 1280px */
+  --section-py:   6rem;          
+  --container-px: 1.5rem;        
+  --max-width:    80rem;        
 
   /* Borders / Radii */
-  --radius:       0.375rem;      /* 6px */
+  --radius:       0.375rem;      
 
   /* Transitions */
   --ease-default: 0.3s ease;
@@ -97,10 +90,7 @@ button {
 }
 
 /* ── Tailwind custom color shims ──────────────────────────── */
-/*
-  If you are NOT using Tailwind, these map the Tailwind
-  utility classes that reference custom KV colors.
-*/
+
 .bg-kv-black      { background-color: var(--kv-black); }
 .bg-kv-charcoal   { background-color: var(--kv-charcoal); }
 .bg-kv-white      { background-color: var(--kv-white); }
@@ -1471,15 +1461,14 @@ button {
    WHY CHOOSE US — Enhanced Engraving Edition
    ============================================================ */
 
-/* ── Section shell ── */
+
 .why-choose-us {
   padding-block: var(--section-py);
-  background-color: var(--kv-white);
+  background-color: #f9fafb;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle crosshatch texture to sell the "surface" feel */
 .why-choose-us__texture {
   position: absolute;
   inset: 0;

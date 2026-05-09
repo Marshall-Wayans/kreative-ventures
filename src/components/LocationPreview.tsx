@@ -116,8 +116,8 @@ export function LocationPreview() {
                 {
                   icon: Clock,
                   label: 'Hours',
-                  value: 'Mon – Sat: 8:00 AM – 7:30 PM', // ✅ updated
-                  // sub: 'Sat: 9:00 AM – 2:00 PM',
+                  value: 'Mon – Sat: 8:00 AM – 7:30 PM', 
+                  sub: 'Sun: Closed',
                   delay: 0.3,
                   badge: true,
                 },

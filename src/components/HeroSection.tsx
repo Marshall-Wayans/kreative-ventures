@@ -11,7 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 
-import laser from '../assets/laser.jpg'
+import laser from '../assets/img-005.jpg'
 
 const images = [
   laser,
