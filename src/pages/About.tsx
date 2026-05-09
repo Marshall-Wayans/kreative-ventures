@@ -10,13 +10,17 @@ import {
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { EngraveAnimation } from '../components/EngraveAnimation'
+import design from '../assets/img-023.jpg'
+import printing from '../assets/img-024.jpg'
+import machine from '../assets/img-029.jpg'
+import banner from '../assets/laser.jpg'
 
 interface Value {
   icon: LucideIcon
   title: string
   desc: string
 }
-
+ 
 const values: Value[] = [
   { icon: Palette,        title: 'Creativity',   desc: 'Pushing boundaries in design and execution.' },
   { icon: Target,         title: 'Precision',    desc: 'Exact measurements, flawless finishes.' },
@@ -38,7 +42,7 @@ export function About() {
       <section className="page-hero">
         <div className="page-hero__bg">
           <img
-            src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=2000&auto=format&fit=crop"
+            src= {banner}
             alt=""
             className="page-hero__img"
           />
@@ -88,7 +92,7 @@ export function About() {
               viewport={{ once: true }}
             >
               <img
-                src="https://images.unsplash.com/photo-1611078449933-332410e1f25b?q=80&w=2070&auto=format&fit=crop"
+                src = {design}
                 alt="Inside the Kreative Ventures workshop"
                 className="about-story__img"
               />
@@ -165,7 +169,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="about-workshop__title">Inside the Workshop</h2>
+              <h2 className="about-workshop__title">WORKSHOP</h2>
               <p className="about-workshop__body">
                 Our workspace is where magic happens. It's a blend of
                 traditional craftsmanship and modern technology. We invite you
@@ -179,7 +183,7 @@ export function About() {
 
             <div className="about-workshop__photos">
               <motion.img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+                src= {machine}
                 alt="Workshop machine"
                 className="about-workshop__photo"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -187,7 +191,7 @@ export function About() {
                 viewport={{ once: true }}
               />
               <motion.img
-                src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=2070&auto=format&fit=crop"
+                src= {printing}
                 alt="Engraving detail"
                 className="about-workshop__photo about-workshop__photo--offset"
                 initial={{ opacity: 0, scale: 0.9 }}

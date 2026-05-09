@@ -4,7 +4,14 @@ import { Layers, Scissors, Printer, CheckCircle2, ArrowRight, Palette, Globe } f
 import laserEngravingImg from '../assets/laser_engraved.svg'
 import designProcessImg from '../assets/design_process.svg'
 import designShowcaseImg from '../assets/design_logo.svg'
+import engrave from '../assets/img-012.jpg'
+import mug from '../assets/cup engraving.jpg'
+import design from '../assets/img-023.jpg'
+import design2 from '../assets/img-024.jpg'
+import banners from '../assets/img-017.jpg'
 import website from '../assets/website.png'
+
+
 
 
 interface ServiceItem {
@@ -132,7 +139,7 @@ export function Services() {
             {/* Photos */}
             <div className="service-section__photos">
               <motion.img
-                src="https://images.pexels.com/photos/7254428/pexels-photo-7254428.jpeg?auto=compress&cs=tinysrgb&w=2070&fit=crop"
+                src= {engrave}
                 alt="Close-up of CNC laser engraving machine on wood"
                 className="service-section__photo"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -140,7 +147,7 @@ export function Services() {
                 viewport={{ once: true }}
               />
               <motion.img
-                src={laserEngravingImg}
+                src={mug}
                 alt="Laser engraving precision metal work close-up"
                 className="service-section__photo service-section__photo--offset"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -167,7 +174,7 @@ export function Services() {
                 viewport={{ once: true }}
               />
               <motion.img
-                src="https://d2zn16t8uygl6t.cloudfront.net/myprintea/images/products_gallery_images/econo-roll-up-01_03383713202506.jpg"
+                src= {banners}
                 alt="Finished large format printed banners on display"
                 className="service-section__photo"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -233,7 +240,7 @@ export function Services() {
             {/* Photos */}
             <div className="service-section__photos">
               <motion.img
-                src={designProcessImg}
+                src={design}
                 alt="Design process — logo being sketched on paper with a pen"
                 className="service-section__photo"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -241,7 +248,7 @@ export function Services() {
                 viewport={{ once: true }}
               />
               <motion.img
-                src={designShowcaseImg}
+                src={design2}
                 alt="Creative Power House brand identity showcase"
                 className="service-section__photo service-section__photo--offset"
                 initial={{ opacity: 0, scale: 0.9 }}
