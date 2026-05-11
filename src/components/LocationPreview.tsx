@@ -9,38 +9,53 @@ export function LocationPreview() {
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=Kreative+Studios+Rungiri+Kikuyu+Road+Nairobi`
   const embedUrl = `https://maps.google.com/maps?q=-1.2464207,36.6652751&z=17&output=embed`
 
-  // ✅ NEW: realtime Kenyan time logic
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
+  const [statusText, setStatusText] = useState('')
 
   useEffect(() => {
     const checkStatus = () => {
       const now = new Date()
-      const kenyaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Nairobi' }))
+      const kenyaTime = new Date(
+        now.toLocaleString('en-US', { timeZone: 'Africa/Nairobi' })
+      )
 
-      const day = kenyaTime.getDay() // 0 = Sunday, 6 = Saturday
+      const day = kenyaTime.getDay() // 0 = Sunday
       const hours = kenyaTime.getHours()
       const minutes = kenyaTime.getMinutes()
       const currentTime = hours * 60 + minutes
 
-      const openWeekday = 8 * 60
-      const closeWeekday = 19 * 60 + 30
-
-      const openSat = 9 * 60
-      const closeSat = 14 * 60
+      const openTime = 8 * 60 // 8:00
+      const closeTime = 19 * 60 + 30 // 19:30
 
       let open = false
+      let text = ''
 
-      if (day >= 1 && day <= 5) {
-        open = currentTime >= openWeekday && currentTime <= closeWeekday
-      } else if (day === 6) {
-        open = currentTime >= openSat && currentTime <= closeSat
+      if (day >= 1 && day <= 6) {
+        if (currentTime >= openTime && currentTime <= closeTime) {
+          open = true
+
+          // time until closing
+          const remaining = closeTime - currentTime
+          const h = Math.floor(remaining / 60)
+          const m = remaining % 60
+
+          text = `Closes in ${h}h ${m}m`
+        } else {
+          open = false
+          text = `Opens at 8:00 AM`
+        }
+      } else {
+        // Sunday
+        open = false
+        text = `Opens Monday at 8:00 AM`
       }
 
       setIsOpen(open)
+      setStatusText(text)
     }
 
     checkStatus()
-    const interval = setInterval(checkStatus, 60000) // update every minute
+    const interval = setInterval(checkStatus, 60000)
 
     return () => clearInterval(interval)
   }, [])
@@ -116,8 +131,7 @@ export function LocationPreview() {
                 {
                   icon: Clock,
                   label: 'Hours',
-                  value: 'Mon – Sat: 8:00 AM – 7:30 PM', 
-                  sub: 'Sun: Closed',
+                  value: 'Mon – Sat: 8:00 AM – 7:30 PM',
                   delay: 0.3,
                   badge: true,
                 },
@@ -143,13 +157,17 @@ export function LocationPreview() {
                   <div className="location-preview__detail-text">
                     <p className="location-preview__detail-label">{label}</p>
                     <p className="location-preview__detail-value">{value}</p>
+
                     <p className="location-preview__detail-sub">
                       {badge && (
                         <span
                           className="location-preview__open-badge"
                           style={
                             isOpen
-                              ? {}
+                              ? {
+                                  background: '#16a34a',
+                                  color: '#fff',
+                                }
                               : {
                                   background: 'rgba(220,38,38,0.1)',
                                   color: '#dc2626',
@@ -157,7 +175,7 @@ export function LocationPreview() {
                                 }
                           }
                         >
-                          {isOpen ? 'Open Now' : 'Closed'}
+                          {isOpen ? `● Open Now · ${statusText}` : `Closed · ${statusText}`}
                         </span>
                       )}
                       {sub}

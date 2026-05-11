@@ -1,15 +1,13 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Layers, Scissors, Printer, CheckCircle2, ArrowRight, Palette, Globe } from 'lucide-react'
-import laserEngravingImg from '../assets/laser_engraved.svg'
-import designProcessImg from '../assets/design_process.svg'
-import designShowcaseImg from '../assets/design_logo.svg'
 import engrave from '../assets/img-012.jpg'
 import mug from '../assets/cup engraving.jpg'
 import design from '../assets/img-023.jpg'
 import design2 from '../assets/img-024.jpg'
 import banners from '../assets/img-017.jpg'
 import website from '../assets/website.png'
+import service from '../assets/services.jpg'
 
 
 
@@ -85,28 +83,37 @@ export function Services() {
       transition={{ duration: 0.5 }}
     >
       {/* ── Intro ── */}
-      <section className="services-intro">
-        <div className="services-intro__inner">
-          <motion.h1
-            className="services-intro__title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Our Services
-          </motion.h1>
-          <div className="page-hero__divider" style={{ margin: '0 auto 2rem' }} />
-          <motion.p
-            className="services-intro__subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            Comprehensive solutions for custom branding, engraving, printing,
-            and cutting. We bring your ideas to life with precision and premium
-            quality.
-          </motion.p>
-        </div>
-      </section>
+<section
+  className="services-intro"
+  style={{
+    backgroundImage: `url(${service})`,
+  }}
+>
+  <div className="services-intro__overlay" />
+
+  <div className="services-intro__inner">
+    <motion.h1
+      className="services-intro__title"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      Our Services
+    </motion.h1>
+
+    <div className="page-hero__divider" style={{ margin: '0 auto 2rem' }} />
+
+    <motion.p
+      className="services-intro__subtitle"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+    >
+      Comprehensive solutions for custom branding, engraving, printing,
+      and cutting. We bring your ideas to life with precision and premium
+      quality.
+    </motion.p>
+  </div>
+</section>
 
       {/* ── 1. Laser Engraving ───────────────────────────────── */}
       <section className="service-section service-section--white">
@@ -223,7 +230,7 @@ export function Services() {
               <div className="service-section__icon service-section__icon--bg-light hexagon">
                 <Palette size={32} aria-hidden="true" />
               </div>
-              <h2 className="service-section__title">Design</h2>
+              <h2 className="service-section__title">Design and Printing</h2>
               <div className="section-divider" />
               <p className="service-section__body">
                 Great brands start with great design. We craft cohesive visual
