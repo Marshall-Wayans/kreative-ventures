@@ -2,8 +2,8 @@ import { motion } from 'framer-motion'
 import { MapPin, Phone, Clock, Navigation, Star, ExternalLink } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-const LAT = -1.2464207
-const LNG = 36.6652751
+// const LAT = -1.2464207
+// const LNG = 36.6652751
 
 export function LocationPreview() {
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=Kreative+Studios+Rungiri+Kikuyu+Road+Nairobi`
