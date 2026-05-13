@@ -107,7 +107,7 @@ export function Brand() {
           </div>
         </motion.div>
 
-        {/* ── Typography ────────────────────────────────────── */}
+        {/* ── Typography ──────────────────────────────────────
         <motion.div
           className="brand-section"
           initial={{ opacity: 0, y: 40 }}
@@ -131,7 +131,7 @@ export function Brand() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* ── Logo Placements ───────────────────────────────── */}
         <motion.div

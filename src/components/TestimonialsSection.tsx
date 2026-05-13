@@ -13,34 +13,34 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Sarah Jenkins',
+    name: 'Sarah Wangui',
     business: 'TechFlow Solutions',
     quote:
-      'Kreative Ventures transformed our corporate gifting. The laser-engraved journals were flawless, and the team was incredibly helpful throughout the design process.',
+      'We ordered laser-engraved journals for our team, and they turned out really clean. The team was responsive and helped us tweak the design until it felt right.',
     rating: 5,
   },
   {
     id: 2,
-    name: 'Michael Chen',
+    name: 'Michael Ochieng',
     business: 'Urban Cafe',
     quote:
-      'We needed custom signage and branded apparel for our new location. They delivered everything on time and the quality exceeded our expectations.',
+      'We needed signage and branded apparel for our new space. Everything came in on time, and the quality was solid. It made our opening much smoother.',
     rating: 5,
   },
   {
     id: 3,
-    name: 'Elena Rodriguez',
+    name: 'Elena Gatheni',
     business: 'Event Pros',
     quote:
-      'Their fast turnaround saved our event. The banners and promotional materials were vibrant and professional. Highly recommend their printing services.',
+      'We were on a tight deadline, and they really came through. The banners looked good and held up well during the event.',
     rating: 5,
   },
   {
     id: 4,
-    name: 'David Thompson',
+    name: 'David Muigai',
     business: 'Thompson Real Estate',
     quote:
-      'Consistent, reliable, and premium quality. We use them for all our client closing gifts and vehicle branding. They never disappoint.',
+      'We’ve used them a few times now for client gifts and branding. The quality has been consistent, which is what matters most to us.',
     rating: 5,
   },
 ]

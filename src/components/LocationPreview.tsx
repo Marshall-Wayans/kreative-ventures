@@ -115,7 +115,7 @@ export function LocationPreview() {
                   <Star key={i} size={14} className="location-preview__star" />
                 ))}
                 <span className="location-preview__rating-score">5.0</span>
-                <span className="location-preview__rating-count">(2 reviews)</span>
+                <span className="location-preview__rating-count">(8+ reviews)</span>
               </div>
             </motion.div>
 

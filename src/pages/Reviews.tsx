@@ -15,7 +15,7 @@ const reviews: Review[] = [
     business: 'TechFlow Solutions',
     initial: 'SW',
     quote:
-      'Kreative Ventures transformed our corporate gifting. The laser-engraved journals were flawless, and the team was incredibly helpful throughout the design process.',
+      'Really happy with how the journals turned out. Clean engraving and the team was easy to work with. Would definitely order again.',
     rating: 5,
   },
   {
@@ -23,7 +23,7 @@ const reviews: Review[] = [
     business: 'Urban Cafe',
     initial: 'MO',
     quote:
-      'We needed custom signage and branded apparel for our new location. They delivered everything on time and the quality exceeded our expectations.',
+      'Got our signage and staff apparel done here. Everything arrived on time and looked great in the space.',
     rating: 5,
   },
   {
@@ -31,7 +31,7 @@ const reviews: Review[] = [
     business: 'Event Pros',
     initial: 'EG',
     quote:
-      'Their fast turnaround saved our event. The banners and promotional materials were vibrant and professional. Highly recommend their printing services.',
+      'We had a tight deadline and they delivered. The banners came out well and were exactly what we needed for the event.',
     rating: 5,
   },
   {
@@ -39,7 +39,7 @@ const reviews: Review[] = [
     business: 'Thompson Real Estate',
     initial: 'DM',
     quote:
-      'Consistent, reliable, and premium quality. We use them for all our client closing gifts and vehicle branding. They never disappoint.',
+      'We’ve used them a couple of times now for branding and gifts. Always consistent quality, which is why we keep coming back.',
     rating: 5,
   },
   {
@@ -47,7 +47,7 @@ const reviews: Review[] = [
     business: 'Boutique Fitness',
     initial: 'JO',
     quote:
-      "The custom hoodies and water bottles they produced for our members are incredible. The print hasn't faded after months of washing.",
+      'Ordered hoodies and bottles for our members. Still holding up well after months of use, which is a big plus.',
     rating: 5,
   },
   {
@@ -55,7 +55,7 @@ const reviews: Review[] = [
     business: 'Johnson Logistics',
     initial: 'MO',
     quote:
-      'Our fleet branding looks incredibly sharp. The vinyl cutting is precise and has withstood harsh weather conditions perfectly.',
+      'The vehicle branding came out clean and has handled weather pretty well so far. Solid job overall.',
     rating: 5,
   },
 ]

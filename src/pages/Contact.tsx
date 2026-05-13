@@ -422,7 +422,7 @@ export function Contact() {
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} size={14} fill="var(--kv-red)" color="var(--kv-red)" />
                     ))}
-                    <span className="contact-biz-card__rating">5.0 (2 reviews)</span>
+                    <span className="contact-biz-card__rating">5.0 (8+ reviews)</span>
                   </div>
                 </div>
               </div>
