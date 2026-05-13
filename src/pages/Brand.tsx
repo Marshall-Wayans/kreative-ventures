@@ -20,12 +20,12 @@ const colorSwatches: ColorSwatch[] = [
   { name: 'KV Muted',      hex: '#8A8A8A', swatchClass: 'swatch-muted',    textClass: 'white' },
 ]
 
-const typeWeights = [
-  { label: 'Light',   weight: 300 },
-  { label: 'Regular', weight: 400 },
-  { label: 'Medium',  weight: 500 },
-  { label: 'Bold',    weight: 700 },
-]
+// const typeWeights = [
+//   { label: 'Light',   weight: 300 },
+//   { label: 'Regular', weight: 400 },
+//   { label: 'Medium',  weight: 500 },
+//   { label: 'Bold',    weight: 700 },
+// ]
 
 export function Brand() {
   return (
