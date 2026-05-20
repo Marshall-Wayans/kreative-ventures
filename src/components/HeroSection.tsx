@@ -10,7 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 
-import heroImg from '../assets/eftakher-alam-i1VQZsU86ok-unsplash.jpg'
+import heroImg from '../assets/creative room.png'
 
 const trustPoints = [
   { icon: Clock3, text: 'Fast turnaround' },
