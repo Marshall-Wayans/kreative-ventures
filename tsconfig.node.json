@@ -6,16 +6,14 @@
     "module": "esnext",
     "types": ["node"],
     "skipLibCheck": true,
-    "composite": true,        // ✅ Add this
+    "composite": true,
+    "emitDeclarationOnly": true,
 
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    // "noEmit": true  ❌ Remove or comment this out
 
-    /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,

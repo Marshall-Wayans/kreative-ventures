@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { EngraveAnimation } from '../components/EngraveAnimation'
 import logo from '../assets/logo.png'
+import design from '../assets/concept.png'
+
 
 interface ColorSwatch {
   name: string
@@ -20,12 +22,12 @@ const colorSwatches: ColorSwatch[] = [
   { name: 'KV Muted',      hex: '#8A8A8A', swatchClass: 'swatch-muted',    textClass: 'white' },
 ]
 
-const typeWeights = [
-  { label: 'Light',   weight: 300 },
-  { label: 'Regular', weight: 400 },
-  { label: 'Medium',  weight: 500 },
-  { label: 'Bold',    weight: 700 },
-]
+// const typeWeights = [
+//   { label: 'Light',   weight: 300 },
+//   { label: 'Regular', weight: 400 },
+//   { label: 'Medium',  weight: 500 },
+//   { label: 'Bold',    weight: 700 },
+// ]
 
 export function Brand() {
   return (
@@ -107,7 +109,7 @@ export function Brand() {
           </div>
         </motion.div>
 
-        {/* ── Typography ────────────────────────────────────── */}
+        {/* ── Typography ──────────────────────────────────────
         <motion.div
           className="brand-section"
           initial={{ opacity: 0, y: 40 }}
@@ -131,31 +133,35 @@ export function Brand() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
 
-        {/* ── Logo Placements ───────────────────────────────── */}
-        <motion.div
-          className="brand-section"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="brand-section__title">Logo Placements</h3>
-          <div className="brand-placements__grid">
-            <div className="brand-placement brand-placement--dark">
-              <span className="brand-placement__logo brand-placement__logo--white">
-                KREATIVE VENTURES
-              </span>
-            </div>
-            <div className="brand-placement brand-placement--light">
-              <span className="brand-placement__logo brand-placement__logo--dark">
-                KREATIVE VENTURES
-              </span>
-            </div>
-          </div>
-        </motion.div>
+        {/* ── Logo Placements ── */}
+<motion.div 
+  className="brand-section"
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+>
+  <h3 className="brand-section__title">Our Logo</h3>
+  <div className="brand-placements__grid">
+    <div className="brand-placement brand-placement--dark">
+      <img 
+        src={design} 
+        alt="Logo on dark background" 
+        className="brand-placement__logo brand-placement__logo--white"
+      />
+    </div>
+    <div className="brand-placement brand-placement--light">
+      <img 
+        src={logo} 
+        alt="Logo on light background" 
+        className="brand-placement__logo brand-placement__logo--dark"
+      />
+    </div>
+  </div>
+</motion.div>
 
-        {/* ── Closing ───────────────────────────────────────── */}
+        {/* ── Closing ─ */}
         <motion.div
           className="brand-closing"
           initial={{ opacity: 0 }}

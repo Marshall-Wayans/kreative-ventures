@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Layers, Scissors, Printer, CheckCircle2, ArrowRight, Palette, Globe } from 'lucide-react'
+import { Layers, Printer, CheckCircle2, ArrowRight, Palette, Globe } from 'lucide-react'
 import engrave from '../assets/img-012.jpg'
 import mug from '../assets/cup engraving.jpg'
 import design from '../assets/img-023.jpg'
@@ -221,7 +221,7 @@ export function Services() {
       <section className="service-section service-section--white">
         <div className="kv-container">
           <div className="service-section__grid">
-            {/* Text */}
+            
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}

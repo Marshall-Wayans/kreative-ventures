@@ -258,7 +258,7 @@ const serviceOptions = [
   'Other',
 ]
 
-// ── Framer-motion variants ───────────────────────────────────────────────────
+// ── Framer-motion variants ───
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -269,7 +269,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const } },
 }
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -422,7 +422,7 @@ export function Contact() {
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} size={14} fill="var(--kv-red)" color="var(--kv-red)" />
                     ))}
-                    <span className="contact-biz-card__rating">5.0 (2 reviews)</span>
+                    <span className="contact-biz-card__rating">5.0 (8+ reviews)</span>
                   </div>
                 </div>
               </div>

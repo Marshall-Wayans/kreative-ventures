@@ -1,6 +1,6 @@
+import React from 'react'
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-import type { Variants } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { Gem, PenTool, Zap, ShieldCheck, HeartHandshake } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -43,7 +43,7 @@ const values: Value[] = [
   },
 ]
 
-// ── Engraving char-by-char component ──────────────────────────────────────────
+// ── Engraving char-by-char component ──
 function EngravedText({
   text,
   className,
@@ -55,7 +55,7 @@ function EngravedText({
   className?: string
   baseDelay?: number
   charDelay?: number
-  tag?: keyof JSX.IntrinsicElements
+  tag?: keyof React.JSX.IntrinsicElements
 }) {
   return (
     <Tag className={className} aria-label={text}>
@@ -140,7 +140,7 @@ function ChiselSweep({ delay = 0 }: { delay?: number }) {
 // ── Main component ─────────────────────────────────────────────────────────────
 export function WhyChooseUs() {
   const sectionRef = useRef<HTMLElement>(null)
-  const inView = useInView(sectionRef, { once: true, margin: '-80px' })
+  // const inView = useInView(sectionRef, { once: true, margin: '-80px' })
 
   return (
     <section className="why-choose-us" ref={sectionRef}>
