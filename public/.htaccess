@@ -1,10 +1,11 @@
 RewriteEngine On
 RewriteBase /
+
+# Allow static files to be served directly
+RewriteRule ^sitemap\.xml$ - [L]
+RewriteRule ^robots\.txt$ - [L]
+
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
-
-<Files "sitemap.xml">
-    Allow from all
-</Files>
