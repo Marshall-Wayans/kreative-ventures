@@ -351,7 +351,6 @@ button {
   height: 100svh;
   min-height: 500px;
   overflow: hidden;
-  background: #0a0a0a;
   display: flex;
   flex-direction: column;
 }
@@ -369,24 +368,23 @@ button {
   object-fit: cover;
   object-position: center 25%;
 
-  /* Start greyscale */
-  filter: grayscale(100%) brightness(0.5);
+  /* Start greyscale — brighter so image is visible */
+  filter: grayscale(100%) brightness(0.75);
   transition: filter 1.1s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: filter;
 }
 
 /* Colour reveal — toggled by JS on scroll OR click */
 .hero__bg--color .hero__bg-img {
-  filter: grayscale(0%) brightness(0.55);
+  filter: grayscale(0%) brightness(0.85);
 }
 
-/* ── OVERLAY — keeps text readable regardless of colour state ── */
+/* ── OVERLAY — very subtle left-side vignette only for text legibility ── */
 .hero__overlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 60%, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.65) 100%),
-    linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.08) 50%, rgba(0,0,0,0.52) 100%);
+    linear-gradient(to right, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.0) 100%);
 }
 
 /* ── CONTENT WRAPPER ── */
@@ -396,20 +394,20 @@ button {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: clamp(70px, 10vh, 100px) clamp(1rem, 5vw, 3rem) clamp(80px, 12vh, 120px);
-  text-align: center;
+  text-align: left;
   box-sizing: border-box;
 }
 
-/* ── CENTER TEXT BLOCK ── */
+/* ── LEFT TEXT BLOCK ── */
 .hero__center {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: clamp(0.9rem, 2vw, 1.4rem);
-  max-width: min(820px, 92vw);
+  max-width: min(600px, 92vw);
   width: 100%;
 }
 
@@ -435,12 +433,12 @@ button {
 /* ── HEADLINE ── */
 .hero__title {
   font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: clamp(2rem, 6.5vw, 5rem);
+  font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 800;
   line-height: 1.1;
   color: #ffffff;
   letter-spacing: -0.025em;
-  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.7);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
   margin: 0;
 }
 
@@ -452,12 +450,12 @@ button {
 
 /* ── SUBTITLE ── */
 .hero__subtitle {
-  font-size: clamp(0.88rem, 2.2vw, 1.1rem);
-  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(0.88rem, 2.2vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.75;
-  max-width: min(560px, 90vw);
+  max-width: min(480px, 90vw);
   margin: 0;
-  text-shadow: 0 1px 20px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
 }
 
 /* ── CTA BUTTONS ── */
@@ -465,7 +463,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(0.7rem, 2vw, 1rem);
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 0.3rem;
   width: 100%;
 }
@@ -529,18 +527,18 @@ button {
   user-select: none;
 }
 
-/* ── TRUST PILLS — pinned to bottom ── */
+/* ── TRUST PILLS — pinned to bottom left ── */
 .hero__trust {
   position: absolute;
   bottom: clamp(1.2rem, 4vh, 2.2rem);
-  left: 50%;
-  transform: translateX(-50%);
+  left: clamp(1rem, 5vw, 3rem);
+  transform: none;
   display: flex;
   flex-wrap: wrap;
   gap: clamp(0.4rem, 1.5vw, 0.65rem);
-  justify-content: center;
-  padding: 0 1rem;
-  width: 100%;
+  justify-content: flex-start;
+  padding: 0;
+  max-width: min(600px, 92vw);
   box-sizing: border-box;
 }
 
@@ -550,7 +548,7 @@ button {
   gap: 0.38rem;
   padding: clamp(0.3rem, 1vw, 0.42rem) clamp(0.6rem, 2vw, 0.9rem);
   border-radius: 999px;
-  background: rgba(10, 10, 10, 0.55);
+  background: rgba(10, 10, 10, 0.45);
   border: 1px solid rgba(232, 32, 12, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -567,7 +565,7 @@ button {
 /* ── Tablet landscape (≤ 1024px) ── */
 @media (max-width: 1024px) {
   .hero__title {
-    font-size: clamp(2rem, 5.5vw, 3.8rem);
+    font-size: clamp(2rem, 5.5vw, 3.2rem);
   }
 }
 
@@ -583,7 +581,7 @@ button {
 
   .hero__ctas {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .hero__btn {
@@ -628,6 +626,7 @@ button {
   .hero__trust {
     gap: 0.38rem;
     bottom: 1rem;
+    left: 1rem;
   }
 
   .hero__trust-item {
