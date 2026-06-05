@@ -363,15 +363,24 @@ button {
 }
 
 .hero__bg-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 25%;
 
-  /* Start greyscale — brighter so image is visible */
   filter: grayscale(100%) brightness(0.75);
-  transition: filter 1.1s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: filter;
+  transition: filter 1.1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease-in-out;
+  will-change: filter, opacity;
+}
+
+.hero__bg-img--active {
+  opacity: 1;
+}
+
+.hero__bg-img--inactive {
+  opacity: 0;
 }
 
 /* Colour reveal — toggled by JS on scroll OR click */
@@ -556,6 +565,152 @@ button {
   font-size: clamp(0.68rem, 1.6vw, 0.78rem);
   letter-spacing: 0.02em;
   white-space: nowrap;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ── Tablet landscape (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .hero__title {
+    font-size: clamp(2rem, 5.5vw, 3.2rem);
+  }
+}
+
+/* ── Tablet portrait (≤ 768px) ── */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: clamp(1.9rem, 6vw, 3rem);
+  }
+
+  .hero__subtitle {
+    font-size: clamp(0.85rem, 2.8vw, 1rem);
+  }
+
+  .hero__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  .hero {
+    height: 100dvh;
+    min-height: 480px;
+  }
+
+  .hero__content {
+    padding-top: clamp(60px, 14vw, 80px);
+    padding-bottom: clamp(70px, 16vw, 100px);
+  }
+
+  .hero__eyebrow {
+    font-size: 0.68rem;
+    padding: 0.38rem 0.85rem;
+  }
+
+  .hero__title {
+    font-size: clamp(1.7rem, 7.5vw, 2.4rem);
+    letter-spacing: -0.015em;
+  }
+
+  .hero__subtitle {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .hero__btn {
+    max-width: 260px;
+    padding: 0.75rem 1.4rem;
+    font-size: 0.82rem;
+  }
+
+  .hero__trust {
+    gap: 0.38rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .hero__trust-item {
+    font-size: 0.67rem;
+    padding: 0.28rem 0.6rem;
+  }
+
+  .hero__scroll-hint {
+    font-size: 0.62rem;
+  }
+}
+
+/* ── Very small screens (≤ 360px) ── */
+@media (max-width: 360px) {
+  .hero__title {
+    font-size: 1.6rem;
+  }
+
+  .hero__eyebrow span {
+    display: none;
+  }
+
+  .hero__trust-item span {
+    display: none;
+  }
+
+  .hero__trust-item {
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+/* ── Landscape mobile (short height) ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: auto;
+    min-height: 100lvh;
+  }
+
+  .hero__content {
+    padding-top: 70px;
+    padding-bottom: 60px;
+    justify-content: flex-start;
+  }
+
+  .hero__center {
+    gap: 0.7rem;
+  }
+
+  .hero__title {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+  }
+
+  .hero__subtitle {
+    display: none;
+  }
+
+  .hero__ctas {
+    flex-direction: row;
+    margin-top: 0.2rem;
+  }
+
+  .hero__btn {
+    width: auto;
+    max-width: none;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.8rem;
+  }
+
+  .hero__trust {
+    position: relative;
+    bottom: auto;
+    transform: none;
+    left: auto;
+    margin-top: 0.8rem;
+  }
 }
 
 /* ============================================================

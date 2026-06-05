@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 
 import heroImg from '../assets/creative room.png'
+import heroImg2 from '../assets/reception.png'
 
 const trustPoints = [
   { icon: Clock3, text: 'Fast turnaround' },
@@ -20,12 +21,12 @@ const trustPoints = [
 ]
 
 export function HeroSection() {
-  
+
   const [revealed, setRevealed] = useState(false)
+  const [activeImg, setActiveImg] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    
     const reveal = () => {
       setRevealed(true)
       window.removeEventListener('scroll', reveal)
@@ -47,20 +48,30 @@ export function HeroSection() {
     }
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveImg(prev => (prev + 1) % 2)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section ref={sectionRef} className="hero">
 
-      
       <div className={`hero__bg${revealed ? ' hero__bg--color' : ''}`}>
         <img
           src={heroImg}
-          className="hero__bg-img"
+          className={`hero__bg-img ${activeImg === 0 ? 'hero__bg-img--active' : 'hero__bg-img--inactive'}`}
           alt="Kreative Ventures workspace"
+        />
+        <img
+          src={heroImg2}
+          className={`hero__bg-img ${activeImg === 1 ? 'hero__bg-img--active' : 'hero__bg-img--inactive'}`}
+          alt="Kreative Ventures reception"
         />
         <div className="hero__overlay" />
       </div>
 
-     
       <div className="hero__content">
         <motion.div
           className="hero__center"
@@ -68,7 +79,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          
+
           {/* <motion.div
             className="hero__eyebrow"
             initial={{ opacity: 0, y: 12 }}
@@ -79,7 +90,6 @@ export function HeroSection() {
             <span>Modern branding, built to stand out</span>
           </motion.div> */}
 
-          
           <motion.h1
             className="hero__title"
             initial={{ opacity: 0, y: 22 }}
@@ -91,7 +101,6 @@ export function HeroSection() {
             premium branded experiences.
           </motion.h1>
 
-          
           <motion.p
             className="hero__subtitle"
             initial={{ opacity: 0, y: 16 }}
@@ -102,7 +111,6 @@ export function HeroSection() {
             we create work that looks sharp and feels premium.
           </motion.p>
 
-          
           <motion.div
             className="hero__ctas"
             initial={{ opacity: 0, y: 14 }}
@@ -117,8 +125,7 @@ export function HeroSection() {
             </Link>
           </motion.div>
 
-          
-          <motion.p
+          {/* <motion.p
             className="hero__scroll-hint"
             initial={{ opacity: 0 }}
             animate={{ opacity: revealed ? 0 : 0.55 }}
@@ -126,10 +133,9 @@ export function HeroSection() {
             aria-hidden="true"
           >
             Click or scroll to reveal colour
-          </motion.p>
+          </motion.p> */}
         </motion.div>
 
-        
         <motion.div
           className="hero__trust"
           initial={{ opacity: 0, y: 10 }}
