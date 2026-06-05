@@ -20,12 +20,12 @@ const trustPoints = [
 ]
 
 export function HeroSection() {
-  // true once the user scrolls OR clicks anywhere
+  
   const [revealed, setRevealed] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    // Once revealed we never go back — remove all listeners
+    
     const reveal = () => {
       setRevealed(true)
       window.removeEventListener('scroll', reveal)
@@ -50,7 +50,7 @@ export function HeroSection() {
   return (
     <section ref={sectionRef} className="hero">
 
-      {/* ── BACKGROUND ── */}
+      
       <div className={`hero__bg${revealed ? ' hero__bg--color' : ''}`}>
         <img
           src={heroImg}
@@ -60,7 +60,7 @@ export function HeroSection() {
         <div className="hero__overlay" />
       </div>
 
-      {/* ── CONTENT ── */}
+     
       <div className="hero__content">
         <motion.div
           className="hero__center"
@@ -68,8 +68,8 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          {/* Eyebrow pill */}
-          <motion.div
+          
+          {/* <motion.div
             className="hero__eyebrow"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,9 +77,9 @@ export function HeroSection() {
           >
             <Sparkles size={13} />
             <span>Modern branding, built to stand out</span>
-          </motion.div>
+          </motion.div> */}
 
-          {/* Headline */}
+          
           <motion.h1
             className="hero__title"
             initial={{ opacity: 0, y: 22 }}
@@ -91,7 +91,7 @@ export function HeroSection() {
             premium branded experiences.
           </motion.h1>
 
-          {/* Subtitle */}
+          
           <motion.p
             className="hero__subtitle"
             initial={{ opacity: 0, y: 16 }}
@@ -102,7 +102,7 @@ export function HeroSection() {
             we create work that looks sharp and feels premium.
           </motion.p>
 
-          {/* CTA Buttons */}
+          
           <motion.div
             className="hero__ctas"
             initial={{ opacity: 0, y: 14 }}
@@ -117,7 +117,7 @@ export function HeroSection() {
             </Link>
           </motion.div>
 
-          {/* Hint — fades out once revealed */}
+          
           <motion.p
             className="hero__scroll-hint"
             initial={{ opacity: 0 }}
@@ -129,7 +129,7 @@ export function HeroSection() {
           </motion.p>
         </motion.div>
 
-        {/* Trust pills — pinned bottom */}
+        
         <motion.div
           className="hero__trust"
           initial={{ opacity: 0, y: 10 }}
